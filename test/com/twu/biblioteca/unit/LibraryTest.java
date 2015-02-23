@@ -22,7 +22,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void Should_RemoveBook_When_BookIsCheckedOut() {
+    public void Should_RemoveBook_When_BookIsCheckedOut() throws Exception {
         Library library = THelper.initLibrary();
 
         Book book = library.getBookByTitle("The Agile Samurai");

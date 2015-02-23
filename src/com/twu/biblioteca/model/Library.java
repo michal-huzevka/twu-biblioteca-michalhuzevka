@@ -34,7 +34,7 @@ public class Library {
         throw new NoSuchElementException();
     }
 
-    public void checkoutBook(Book book) {
+    public void checkoutBook(Book book) throws Exception {
         book.checkout();
     }
 }
