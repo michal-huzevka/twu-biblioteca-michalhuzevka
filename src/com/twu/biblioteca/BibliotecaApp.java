@@ -38,9 +38,12 @@ public class BibliotecaApp {
 
     private static Library initDefaultLibrary() {
         List<Book> books = new LinkedList<Book>();
-        books.add(new Book("Cloud Computing", "Jack Henderson", "2004"));
-        books.add(new Book(".NET Domain Driven Design", "Tim McCarthy", "2003"));
-        books.add(new Book("Frankenstein", "Mary Shelley", "183"));
+        books.add(new Book("A Game of Thrones", "George R. R. Martin", "1996"));
+        books.add(new Book("Frankenstein", "Mary Shelley", "1883"));
+        books.add(new Book("Siddhartha", "Hermann Hesse", "1922"));
+        books.add(new Book("Nausea", "Jean-Paul Sartre", "1938"));
+        books.add(new Book("The Stranger", "Albert Camus", "1942"));
+        books.add(new Book("Out", "Natsuo Kirino", "2004"));
         return new Library(books);
     }
 }
