@@ -2,9 +2,7 @@ package com.twu.biblioteca.integration;
 
 //import build.tools.javazic.Main;
 import com.twu.biblioteca.THelper;
-import com.twu.biblioteca.controller.CheckoutController;
-import com.twu.biblioteca.controller.MainController;
-import com.twu.biblioteca.controller.ReturnController;
+import com.twu.biblioteca.controller.console.*;
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Library;
 import org.junit.Test;
@@ -18,34 +16,34 @@ public class CheckoutAndReturnTest {
         Library library = THelper.initLibrary();
         assert(library.getAvailableBooks().size() == 3);
 
-        CheckoutController checkoutController = new CheckoutController(library);
+        CheckoutState checkoutState = new CheckoutState(library);
         String book1 = "Design Patterns";
         String book2 = "Software Refactoring";
-        checkoutController.checkout(book1);
+        checkoutState.action(book1);
         assert (library.getAvailableBooks().size() == 2);
 
-        checkoutController.checkout(book2);
+        checkoutState.action(book2);
         assert (library.getAvailableBooks().size() == 1);
 
-        checkoutController.checkout("asdfga not a book");
+        checkoutState.action("asdfga not a book");
         assert (library.getAvailableBooks().size() == 1);
 
 
-        ReturnController returnController = new ReturnController(library);
-        returnController.returnBook(book1);
+        ReturnState returnState = new ReturnState(library);
+        returnState.action(book1);
         assert (library.getAvailableBooks().size() == 2);
 
-        returnController.returnBook(book2);
+        returnState.action(book2);
         assert (library.getAvailableBooks().size() == 3);
 
-        returnController.returnBook("asdfga not a book");
+        returnState.action("asdfga not a book");
         assert (library.getAvailableBooks().size() == 3);
     }
 
     @Test
     public void CheckOutAndReturn2() {
         Library library = THelper.initLibrary();
-        MainController controller = new MainController(library);
+        ConsoleController controller = new ConsoleController(library);
         Book book = library.getBookByTitle("Design Patterns");
         assert (book.isAvailable());
         assert (library.getAvailableBooks().size() == 3);
