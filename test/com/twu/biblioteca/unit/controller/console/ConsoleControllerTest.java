@@ -1,7 +1,6 @@
-package com.twu.biblioteca.unit;
+package com.twu.biblioteca.unit.controller.console;
 
 import com.twu.biblioteca.THelper;
-import com.twu.biblioteca.controller.MainController;
 import com.twu.biblioteca.controller.console.ConsoleController;
 import com.twu.biblioteca.view.*;
 import org.junit.Test;

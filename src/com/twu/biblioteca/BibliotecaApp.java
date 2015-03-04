@@ -12,7 +12,8 @@ import java.util.Scanner;
 
 /*
 TODO:
-Refactor controllers so they are split into two: one for handling console input and one for performing actions
+X Refactor controllers so they are split into two: one for handling console input and one for performing actions
+Add in unit tests for each state
 Create an item class that Book inherits from
 Ability to check out an item rather than a book
 Movies should have a name, year, director and movie rating (from 1-10 or unrated)

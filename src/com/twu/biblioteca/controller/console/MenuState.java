@@ -43,7 +43,6 @@ public class MenuState extends BaseState {
             nextState = new ReturnState(library);
         } else if (toLower.equals("m")) {
             view = new MenuView();
-            return view;
         }
         else {
             view = new GenericView("Select a valid option! Press m to view the menu options. \r\n");

@@ -1,5 +1,6 @@
 package com.twu.biblioteca.controller.console;
 
+import com.twu.biblioteca.controller.general.CheckoutController;
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.view.GenericView;
@@ -23,15 +24,9 @@ public class CheckoutState extends BaseState {
             view = new MenuView();
             nextState = new MenuState(this.library);
         } else {
-            try {
-                String title = input.toLowerCase();
-                Book book = library.getBookByTitle(title);
-                book.checkout();
-                view = new GenericView("Thank you! Enjoy the book.\r\n");
-                nextState = new MenuState(this.library);
-            } catch (Exception ex) {
-                view = new GenericView("That book is not available. Please try again or type in R to return to the menu.\r\n");
-            }
+            CheckoutController controller = new CheckoutController(library);
+            view = controller.checkout(input);
+            nextState = controller.nextState();
         }
         return view;
     }

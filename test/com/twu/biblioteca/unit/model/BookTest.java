@@ -1,4 +1,4 @@
-package com.twu.biblioteca.unit;
+package com.twu.biblioteca.unit.model;
 
 import com.twu.biblioteca.model.Book;
 import org.junit.Assert;

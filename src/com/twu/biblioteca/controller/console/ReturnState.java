@@ -1,5 +1,6 @@
 package com.twu.biblioteca.controller.console;
 
+import com.twu.biblioteca.controller.general.ReturnController;
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.view.GenericView;
@@ -19,19 +20,13 @@ public class ReturnState extends BaseState {
 
     public View action(String input) {
         View view = null;
-        String title = input.toLowerCase();
-        if (title.toLowerCase().equals("r")) {
+        if (input.toLowerCase().equals("r")) {
             view = new MenuView();
             nextState = new MenuState(this.library);
         } else {
-            try {
-                Book book = library.getBookByTitle(title);
-                book.returnBook();
-                view = new GenericView("Thank you for returning the book.\r\n");
-                nextState = new MenuState(this.library);
-            } catch (Exception ex) {
-                view = new GenericView("That is not a valid book to return. Please try again or type in R to return to the menu.\r\n");
-            }
+            ReturnController returnController = new ReturnController(library);
+            view = returnController.returnItem(input);
+            nextState = returnController.nextState();
         }
         return view;
     }

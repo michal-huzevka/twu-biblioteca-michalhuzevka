@@ -1,4 +1,4 @@
-package com.twu.biblioteca.unit;
+package com.twu.biblioteca.unit.model;
 import com.twu.biblioteca.THelper;
 import com.twu.biblioteca.model.*;
 import org.junit.Assert;
