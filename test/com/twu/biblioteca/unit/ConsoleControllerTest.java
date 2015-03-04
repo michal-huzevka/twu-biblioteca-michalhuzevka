@@ -8,7 +8,7 @@ import org.junit.Test;
 /**
  * Created by michal on 2/23/15.
  */
-public class MainControllerTest {
+public class ConsoleControllerTest {
 
     @Test
     public void Should_Terminate_WhenQIsPressed() {
