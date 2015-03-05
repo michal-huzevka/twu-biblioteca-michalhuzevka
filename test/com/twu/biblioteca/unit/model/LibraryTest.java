@@ -13,12 +13,18 @@ public class LibraryTest {
 
     @Test
     public void Should_ListAvailableBooks_When_BooksAreAdded() {
-        List<LibraryItem> initialList = THelper.listOfBooks();
+        List<Book> initialList = THelper.listOfBooks();
         Library library = new Library();
         library.addBooks(initialList);
 
-        List<LibraryItem> availableLibraryItems = library.getAvailableBooks();
+        List<Book> availableLibraryItems = library.getAvailableBooks();
         assert(availableLibraryItems.containsAll(initialList));
+
+        Book book = new Book("Test", "Test Author", "2003");
+        library.addBook(book);
+
+        availableLibraryItems = library.getAvailableBooks();
+        assertTrue(availableLibraryItems.contains(book));
 
     }
 
@@ -30,6 +36,11 @@ public class LibraryTest {
 
         List<Movie> availableMovies = library.getAvailableMovies();
         assertTrue(availableMovies.containsAll(initialList));
+
+        Movie movie = new Movie("TestMovie");
+        library.addMovie(movie);
+        availableMovies = library.getAvailableMovies();
+        assertTrue(availableMovies.contains(movie));
     }
 
 
@@ -40,8 +51,8 @@ public class LibraryTest {
         Library library = THelper.initLibrary();
 
         LibraryItem libraryItem = library.getBookByTitle("The Agile Samurai");
-        library.checkoutBook(libraryItem);
-        List<LibraryItem> availableLibraryItems = library.getAvailableBooks();
+        library.checkoutItem(libraryItem);
+        List<Book> availableLibraryItems = library.getAvailableBooks();
         for (LibraryItem tmpLibraryItem : availableLibraryItems) {
             assert(tmpLibraryItem != libraryItem);
         }

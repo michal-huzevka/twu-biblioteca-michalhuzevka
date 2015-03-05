@@ -7,18 +7,18 @@ public class LibraryItem {
     private String title;
     private String author;
     private String yearPublished;
-    private ItemStatus bookStatus;
+    private ItemStatus itemStatus;
 
     public LibraryItem(String title) {
         this.setTitle(title);
-        setBookStatus(ItemStatus.AVAILABLE);
+        setItemStatus(ItemStatus.AVAILABLE);
     }
 
     public LibraryItem(String title, String author, String yearPublished) {
         this.title = title;
         this.author = author;
         this.yearPublished = yearPublished;
-        setBookStatus(ItemStatus.AVAILABLE);
+        setItemStatus(ItemStatus.AVAILABLE);
     }
 
     public String toString() {
@@ -26,17 +26,17 @@ public class LibraryItem {
     }
 
     public void checkout() throws Exception {
-        if (getBookStatus() != ItemStatus.AVAILABLE) {
-            throw new Exception("Book is not available for checkout");
+        if (getItemStatus() != ItemStatus.AVAILABLE) {
+            throw new Exception("Item is not available for checkout");
         }
-        setBookStatus(ItemStatus.CHECKED_OUT);
+        setItemStatus(ItemStatus.CHECKED_OUT);
     }
 
     public  void returnBook() throws  Exception {
-        if (getBookStatus() != ItemStatus.CHECKED_OUT) {
-            throw new Exception("Book is already in the library");
+        if (getItemStatus() != ItemStatus.CHECKED_OUT) {
+            throw new Exception("Item is already in the library");
         }
-        setBookStatus(ItemStatus.AVAILABLE);
+        setItemStatus(ItemStatus.AVAILABLE);
     }
 
     public String getTitle() {
@@ -49,15 +49,15 @@ public class LibraryItem {
 
 
     public boolean isAvailable() {
-        return getBookStatus() == ItemStatus.AVAILABLE;
+        return getItemStatus() == ItemStatus.AVAILABLE;
     }
 
-    private ItemStatus getBookStatus() {
-        return bookStatus;
+    private ItemStatus getItemStatus() {
+        return itemStatus;
     }
 
-    private void setBookStatus(ItemStatus bookStatus) {
-        this.bookStatus = bookStatus;
+    private void setItemStatus(ItemStatus bookStatus) {
+        this.itemStatus = bookStatus;
     }
 
     public String getAuthor() {

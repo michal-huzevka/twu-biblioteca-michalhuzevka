@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.LibraryItem;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.Movie;
@@ -17,12 +18,12 @@ public class THelper {
         return library;
     }
 
-    public static List<LibraryItem> listOfBooks() {
-        List<LibraryItem> libraryItems = new LinkedList<LibraryItem>();
+    public static List<Book> listOfBooks() {
+        List<Book> libraryItems = new LinkedList<Book>();
 
-        libraryItems.add(new LibraryItem("The Agile Samurai", "Johnathon Rasmusson", "2002"));
-        libraryItems.add(new LibraryItem("Software Refactoring", "Martin Fowler", "2004"));
-        libraryItems.add(new LibraryItem("Design Patterns", "Gang of Four", "1996"));
+        libraryItems.add(new Book("The Agile Samurai", "Johnathon Rasmusson", "2002"));
+        libraryItems.add(new Book("Software Refactoring", "Martin Fowler", "2004"));
+        libraryItems.add(new Book("Design Patterns", "Gang of Four", "1996"));
         return libraryItems;
     }
 
