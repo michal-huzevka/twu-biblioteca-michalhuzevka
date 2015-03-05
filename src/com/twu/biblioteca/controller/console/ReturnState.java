@@ -19,7 +19,7 @@ public class ReturnState extends BaseState {
     public View action(String input) {
         View view = null;
         if (input.toLowerCase().equals("r")) {
-            view = new MenuView();
+            view = new MenuView(library.getActiveUser());
             nextState = new MenuState(this.library);
         } else {
             ReturnController returnController = new ReturnController(library);

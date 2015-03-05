@@ -18,6 +18,14 @@ public class AccountCollection {
         }
         throw new NoSuchElementException();
     }
+    public UserAccount getUser(String ID) {
+        for (UserAccount account : users) {
+            if (account.getID().equals(ID)) {
+                return account;
+            }
+        }
+        throw new NoSuchElementException();
+    }
 
     public void add(UserAccount account) {
         users.add(account);

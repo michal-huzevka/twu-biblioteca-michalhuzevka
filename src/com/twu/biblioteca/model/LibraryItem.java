@@ -7,6 +7,7 @@ public class LibraryItem {
     private String title;
     private String yearCreated;
     private ItemStatus itemStatus;
+    private UserAccount borrower = null;
 
     public LibraryItem(String title, String yearCreated) {
         this.title = title;
@@ -14,10 +15,12 @@ public class LibraryItem {
         setItemStatus(ItemStatus.AVAILABLE);
     }
 
-    public void checkout() throws Exception {
+
+    public void checkout(UserAccount userAccount) throws Exception {
         if (getItemStatus() != ItemStatus.AVAILABLE) {
             throw new Exception("Item is not available for checkout");
         }
+        borrower = userAccount;
         setItemStatus(ItemStatus.CHECKED_OUT);
     }
 
@@ -25,6 +28,7 @@ public class LibraryItem {
         if (getItemStatus() != ItemStatus.CHECKED_OUT) {
             throw new Exception("Item is already in the library");
         }
+        borrower = null;
         setItemStatus(ItemStatus.AVAILABLE);
     }
 
@@ -56,5 +60,9 @@ public class LibraryItem {
 
     public void setYearCreated(String yearCreated) {
         this.yearCreated = yearCreated;
+    }
+
+    public UserAccount getBorrower() {
+        return borrower;
     }
 }

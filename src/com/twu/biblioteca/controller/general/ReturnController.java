@@ -20,13 +20,20 @@ public class ReturnController {
         View view = null;
         try {
             boolean bookExists = library.bookExists(title);
+            LibraryItem item = null;
             if (bookExists) {
-                library.getBookByTitle(title).returnItem();
+                item = library.getBookByTitle(title);
             } else {
-                library.getMovieByTitle(title).returnItem();
+                item = library.getMovieByTitle(title);
             }
-            view = new GenericView("Thank you for returning the item.\r\n");
-            nextState = new MenuState(this.library);
+            if (item.getBorrower().getID() == library.getActiveUserID()) {
+                item.returnItem();
+                view = new GenericView("Thank you for returning the item.\r\n");
+                nextState = new MenuState(this.library);
+            } else {
+                view = new GenericView("That item does not belong to you.\r\n");
+                nextState = new ReturnState(this.library);
+            }
         } catch (Exception ex) {
             view = new GenericView("That is not a valid item to return. Please try again or type in R to return to the menu.\r\n");
             nextState = new ReturnState(this.library);

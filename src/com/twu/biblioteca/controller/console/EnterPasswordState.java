@@ -26,9 +26,10 @@ public class EnterPasswordState extends BaseState {
         nextState = new MenuState(library);
         try {
             UserAccount account = library.getAccountCollection().getUser(libraryID, input);
+            library.setActiveUserID(account.getID());
             view = new WelcomeUserView(account);
         } catch (NoSuchElementException ex) {
-            view = new GenericView("That username and password combination doesn't match. You are moved back to the main menu now.");
+            view = new GenericView("That username and password combination doesn't match. You are moved back to the main menu now.\r\n");
 
         }
 

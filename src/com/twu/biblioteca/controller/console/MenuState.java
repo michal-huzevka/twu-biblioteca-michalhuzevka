@@ -32,8 +32,13 @@ public class MenuState extends BaseState {
             terminated = true;
         }
         if (toLower.equals("l")) {
-            view = new GenericView("Please enter your library ID");
-            nextState = new EnterLibraryIDState(library);
+            if (library.getActiveUser() == null) {
+                view = new GenericView("Please enter your library ID to login.\r\n");
+                nextState = new EnterLibraryIDState(library);
+            } else {
+                library.setActiveUserID(null);
+                view = new GenericView("You are now logged out. Press O to view the menu options.");
+            }
         }
         if (toLower.equals("b")) {
             view = controller.GetAvailableBooks();
@@ -42,15 +47,15 @@ public class MenuState extends BaseState {
             view = controller.GetAvailableMovies();
         }
         if (toLower.equals("c")) {
-            view = new GenericView("Please type in the name of the item you wish to checkout.");
+            view = new GenericView("Please type in the name of the item you wish to checkout.\r\n");
             nextState = new CheckoutState(library);
         }
         if (toLower.equals("r")) {
-            view = new GenericView("Please type in the name of the item you wish to return.");
+            view = new GenericView("Please type in the name of the item you wish to return.\r\n");
             nextState = new ReturnState(library);
         }
         if (toLower.equals("o")) {
-            view = new MenuView();
+            view = new MenuView(library.getActiveUser());
         }
         //default view
         if (view == null) {

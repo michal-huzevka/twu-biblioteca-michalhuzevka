@@ -35,7 +35,7 @@ public class BibliotecaApp {
         System.out.println("Welcome to Biblioteca! Please feel free to view our books.");
         Library library = initDefaultLibrary();
         ConsoleController controller = new ConsoleController(library);
-        MenuView menu = new MenuView();
+        MenuView menu = new MenuView(library.getActiveUser());
         displayView(menu);
 
         while (!controller.isTerminated()) {
@@ -71,7 +71,8 @@ public class BibliotecaApp {
         library.addMovies(movies);
         AccountCollection collection = library.getAccountCollection();
         collection.add(new UserAccount("0000", "asd123", "John", "Smith", UserType.CUSTOMER));
-        collection.add(new UserAccount("1111", "asd123", "Jack", "Johnson", UserType.LIBRARIAN));
+        collection.add(new UserAccount("1111", "asd123", "John", "Washington", UserType.CUSTOMER));
+        collection.add(new UserAccount("2222", "asd123", "Jack", "Johnson", UserType.LIBRARIAN));
         return library;
     }
 }

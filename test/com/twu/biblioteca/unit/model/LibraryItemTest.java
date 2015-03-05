@@ -1,9 +1,11 @@
 package com.twu.biblioteca.unit.model;
 
+import com.twu.biblioteca.THelper;
 import com.twu.biblioteca.model.LibraryItem;
+import com.twu.biblioteca.model.UserAccount;
 import org.junit.Assert;
 import org.junit.Test;
-
+import static org.junit.Assert.*;
 /**
  * Created by michal on 2/23/15.
  */
@@ -11,20 +13,25 @@ public class LibraryItemTest {
     @Test
     public void Should_UpdateStatus_WhenBookIsCheckedOut() throws Exception{
         LibraryItem libraryItem = sampleLibraryItem();
-        assert(libraryItem.isAvailable());
+        UserAccount user = THelper.sampleUser();
 
-        libraryItem.checkout();
-        assert(!libraryItem.isAvailable());
+        assertTrue(libraryItem.isAvailable());
+        assertTrue(libraryItem.getBorrower() == null);
+        libraryItem.checkout(user);
+        assertTrue(!libraryItem.isAvailable());
+        assertEquals(user, libraryItem.getBorrower());
+
 
     }
 
     @Test
     public void Should_ThrowException_IfBookIsCheckedOutTwice() throws  Exception{
         LibraryItem libraryItem = sampleLibraryItem();
+        UserAccount user = THelper.sampleUser();
 
-        libraryItem.checkout();
+        libraryItem.checkout(user);
         try {
-            libraryItem.checkout();
+            libraryItem.checkout(user);
             Assert.fail();
         } catch (Exception ex) {
 
@@ -34,9 +41,11 @@ public class LibraryItemTest {
     @Test
     public void Should_UpdateStatus_WhenBookIsReturned() throws Exception{
         LibraryItem libraryItem = sampleLibraryItem();
+        UserAccount user = THelper.sampleUser();
+
         assert(libraryItem.isAvailable());
 
-        libraryItem.checkout();
+        libraryItem.checkout(user);
         assert(!libraryItem.isAvailable());
 
         libraryItem.returnItem();
@@ -47,7 +56,7 @@ public class LibraryItemTest {
     @Test
     public void Should_ThrowException_IfBookIsIncorrectlyReturned() throws  Exception{
         LibraryItem libraryItem = sampleLibraryItem();
-
+        UserAccount user = THelper.sampleUser();
         try {
             libraryItem.returnItem();
             Assert.fail();
@@ -55,6 +64,7 @@ public class LibraryItemTest {
 
         }
     }
+
 
     private LibraryItem sampleLibraryItem() {
         return new LibraryItem("Software Refactoring", "2003");

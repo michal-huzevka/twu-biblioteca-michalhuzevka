@@ -18,7 +18,7 @@ public class EnterLibraryIDState extends BaseState {
     }
 
     public View action(String input) {
-        View view = new GenericView("Please enter your password");
+        View view = new GenericView("Please enter your password\r\n");
         nextState = new EnterPasswordState(library, input);
         return view;
     }

@@ -5,6 +5,7 @@ import com.twu.biblioteca.controller.console.CheckoutState;
 import com.twu.biblioteca.controller.console.MenuState;
 import com.twu.biblioteca.model.LibraryItem;
 import com.twu.biblioteca.model.Library;
+import com.twu.biblioteca.model.UserAccount;
 import com.twu.biblioteca.view.GenericView;
 import com.twu.biblioteca.view.View;
 
@@ -22,11 +23,14 @@ public class CheckoutController {
         View view = null;
         try {
             boolean bookExists = library.bookExists(title);
+            String userID = library.getActiveUserID();
+            LibraryItem item = null;
             if (bookExists) {
-                library.getBookByTitle(title).checkout();
+                item = library.getBookByTitle(title);
             } else {
-                library.getMovieByTitle(title).checkout();
+                item = library.getMovieByTitle(title);
             }
+            library.checkoutItem(item, userID);
             view = new GenericView("Thank you! Enjoy the item.\r\n");
             nextState = new MenuState(this.library);
         } catch (Exception ex) {

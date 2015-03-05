@@ -4,6 +4,8 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import com.twu.biblioteca.THelper;
 import com.twu.biblioteca.controller.console.CheckoutState;
@@ -13,8 +15,6 @@ import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.LibraryItem;
 import com.twu.biblioteca.view.View;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 
 /**
@@ -26,37 +26,22 @@ public class LoginTest {
         Library library = THelper.initLibrary();
         View view = null;
 
+        assertTrue (library.getActiveUserID() == null);
         ConsoleController controller = new ConsoleController(library);
         view = controller.action("l");
-        assertThat(view.output(), containsString("Please enter your library ID"));
+        assertThat(view.output(), containsString("Please enter your library ID to login"));
         view = controller.action("1234");
 
         assertThat(view.output(), containsString("Please enter your password"));
         view = controller.action("asd123");
         assertThat(view.output(), containsString("You have successfully logged in. Welcome, John Smith!"));
 
-        /*
-        LibraryItem libraryItem = library.getBookByTitle("Design Patterns");
-        assert (libraryItem.isAvailable());
-        assert (library.getAvailableBooks().size() == 3);
-        controller.action("c");
-        controller.action("Design Patterns");
-        controller.action("Not a command");
+        assertTrue(library.getActiveUserID().equals("1234"));
+        assertTrue(library.getActiveUser().getID().equals("1234"));
 
-        assert (library.getAvailableBooks().size() == 2);
-        assert (!libraryItem.isAvailable());
-        controller.action("c");
-        controller.action("r");
-        controller.action("r");
-        controller.action("Test book");
-        controller.action("Design Patterns");
-        assert (library.getAvailableBooks().size() == 3);
-        assert (libraryItem.isAvailable());
-        controller.action("r");
-        controller.action("Design Patterns");
-        assert (library.getAvailableBooks().size() == 3);
-        assert (libraryItem.isAvailable());
-        */
+        view = controller.action("l");
+        assertThat(view.output(), containsString("You are now logged out"));
+        assertTrue(library.getActiveUserID() == null);
     }
 
 }

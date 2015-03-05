@@ -11,11 +11,13 @@ public class Library {
     private List<Book> books;
     private List<Movie> movies;
     private AccountCollection accountCollection;
+    private String activeUserID;
 
     public Library() {
         books = new ArrayList<Book>();
         movies = new ArrayList<Movie>();
         setAccountCollection(new AccountCollection());
+        activeUserID = null;
     }
 
     public List<Book> getAvailableBooks() {
@@ -50,8 +52,8 @@ public class Library {
 
 
 
-    public void checkoutItem(LibraryItem libraryItem) throws Exception {
-        libraryItem.checkout();
+    public void checkoutItem(LibraryItem libraryItem, String userID) throws Exception {
+        libraryItem.checkout(accountCollection.getUser(userID));
     }
 
     public List<Movie> getAvailableMovies() {
@@ -107,4 +109,18 @@ public class Library {
     public void setAccountCollection(AccountCollection accountCollection) {
         this.accountCollection = accountCollection;
     }
+
+    public String getActiveUserID() {
+        return activeUserID;
+    }
+
+    public void setActiveUserID(String activeUserID) {
+        this.activeUserID = activeUserID;
+    }
+
+    public UserAccount getActiveUser() {
+        if (activeUserID == null) return null;
+        return accountCollection.getUser(activeUserID);
+    }
+
 }

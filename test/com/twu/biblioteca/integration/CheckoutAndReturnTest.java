@@ -5,6 +5,7 @@ import com.twu.biblioteca.THelper;
 import com.twu.biblioteca.controller.console.*;
 import com.twu.biblioteca.model.LibraryItem;
 import com.twu.biblioteca.model.Library;
+import com.twu.biblioteca.model.UserAccount;
 import org.junit.Test;
 
 /**
@@ -14,6 +15,9 @@ public class CheckoutAndReturnTest {
     @Test
     public void CheckOutAndReturn1() {
         Library library = THelper.initLibrary();
+        UserAccount user = THelper.sampleUser();
+        library.setActiveUserID(user.getID());
+
         assert(library.getAvailableBooks().size() == 3);
 
         CheckoutState checkoutState = new CheckoutState(library);
@@ -47,6 +51,10 @@ public class CheckoutAndReturnTest {
         LibraryItem libraryItem = library.getBookByTitle("Design Patterns");
         assert (libraryItem.isAvailable());
         assert (library.getAvailableBooks().size() == 3);
+
+        controller.action("l");
+        controller.action("1234");
+        controller.action("asd123");
         controller.action("c");
         controller.action("Design Patterns");
         controller.action("Not a command");

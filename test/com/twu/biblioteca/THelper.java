@@ -35,8 +35,17 @@ public class THelper {
 
     public static AccountCollection accountCollection() {
         AccountCollection collection = new AccountCollection();
-        collection.add(new UserAccount("1234", "asd123", "John", "Smith", UserType.CUSTOMER));
+        collection.add(sampleUser());
+        collection.add(sampleLibrarian());
         return collection;
+    }
+
+    public static UserAccount sampleUser() {
+        return new UserAccount("1234", "asd123", "John", "Smith", UserType.CUSTOMER);
+    }
+
+    public static UserAccount sampleLibrarian() {
+        return new UserAccount("2222", "asd123", "Michael", "Dunphey", UserType.LIBRARIAN);
     }
 
 }

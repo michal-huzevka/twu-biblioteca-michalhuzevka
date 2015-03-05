@@ -49,9 +49,9 @@ public class LibraryTest {
     @Test
     public void Should_RemoveBook_When_BookIsCheckedOut() throws Exception {
         Library library = THelper.initLibrary();
-
+        UserAccount user = THelper.sampleUser();
         LibraryItem libraryItem = library.getBookByTitle("The Agile Samurai");
-        library.checkoutItem(libraryItem);
+        library.checkoutItem(libraryItem, user.getID());
         List<Book> availableLibraryItems = library.getAvailableBooks();
         for (LibraryItem tmpLibraryItem : availableLibraryItems) {
             assert(tmpLibraryItem != libraryItem);
