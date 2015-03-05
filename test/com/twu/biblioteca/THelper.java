@@ -15,6 +15,7 @@ public class THelper {
     public static Library initLibrary() {
         Library library = new Library();
         library.addBooks(listOfBooks());
+        library.addMovies(listOfMovies());
         return library;
     }
 

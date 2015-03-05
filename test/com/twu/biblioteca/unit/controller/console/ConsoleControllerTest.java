@@ -19,9 +19,9 @@ public class ConsoleControllerTest {
     }
 
     @Test
-    public void Should_DisplayBookList_WhenLIsPressed() {
+    public void Should_DisplayBookList_WhenBIsPressed() {
         ConsoleController controller = new ConsoleController(THelper.initLibrary());
-        View view = controller.action("L");
+        View view = controller.action("B");
         assert (view instanceof BookListView);
     }
 }

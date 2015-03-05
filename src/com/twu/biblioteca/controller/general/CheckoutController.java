@@ -21,12 +21,16 @@ public class CheckoutController {
     public View checkout(String title) {
         View view = null;
         try {
-            LibraryItem libraryItem = library.getBookByTitle(title);
-            libraryItem.checkout();
-            view = new GenericView("Thank you! Enjoy the book.\r\n");
+            boolean bookExists = library.bookExists(title);
+            if (bookExists) {
+                library.getBookByTitle(title).checkout();
+            } else {
+                library.getMovieByTitle(title).checkout();
+            }
+            view = new GenericView("Thank you! Enjoy the item.\r\n");
             nextState = new MenuState(this.library);
         } catch (Exception ex) {
-            view = new GenericView("That book is not available. Please try again or type in R to return to the menu.\r\n");
+            view = new GenericView("That item is not available. Please try again or type in R to return to the menu.\r\n");
             nextState = new CheckoutState(this.library);
         }
         return view;

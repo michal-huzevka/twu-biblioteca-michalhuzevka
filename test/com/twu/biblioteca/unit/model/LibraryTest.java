@@ -78,4 +78,48 @@ public class LibraryTest {
         }
     }
 
+    @Test
+    public void GetMovieByTitle_Should_ReturnMovie() {
+        Library library = THelper.initLibrary();
+        LibraryItem libraryItem = library.getMovieByTitle("The Shawshank Redemption");
+        assert (libraryItem.getTitle().equals("The Shawshank Redemption"));
+    }
+
+    @Test
+    public void GetMovieByTitle_Should_ThrowException_When_NoBooksExist() {
+        Library library = THelper.initLibrary();
+        try {
+            LibraryItem libraryItem = library.getMovieByTitle("Test movie");
+            Assert.fail("Exception not thrown");
+
+        }
+        catch (NoSuchElementException e) {
+
+        }
+    }
+
+    @Test
+    public void BookExists_Should_ReturnTrue_IfItExists() {
+        Library library = THelper.initLibrary();
+        assertFalse(library.bookExists("Test book"));
+    }
+
+    @Test
+    public void BookExists_Should_ReturnFalse_IfItDoesntExist() {
+        Library library = THelper.initLibrary();
+        assertTrue(library.bookExists("The Agile Samurai"));
+    }
+
+    @Test
+    public void MovieExists_Should_ReturnTrue_IfItExists() {
+        Library library = THelper.initLibrary();
+        assertFalse(library.movieExists("Test movie"));
+    }
+
+    @Test
+    public void MovieExists_Should_ReturnFalse_IfItDoesntExist() {
+        Library library = THelper.initLibrary();
+        assertTrue(library.movieExists("The Shawshank Redemption"));
+    }
+
 }

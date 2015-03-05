@@ -19,8 +19,8 @@ Add in unit tests for each state
 X Create an item class that Book inherits from
 X Ability to check out an item rather than a book
 X Movies should have a name, year, director and movie rating (from 1-10 or unrated)
-List Movies
-Checkout Movie
+X List Movies
+X Checkout Movie
 Book must be checked out to a user
 Users must login to checkout and return books
 Predefined user credentials

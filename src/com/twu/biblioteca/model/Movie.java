@@ -28,4 +28,8 @@ public class Movie extends LibraryItem {
     public void setRating(String rating) {
         this.rating = rating;
     }
+
+    public String toString() {
+        return getTitle() + " by " + getDirector() + " in " + getYearCreated();
+    }
 }

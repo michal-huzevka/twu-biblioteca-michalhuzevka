@@ -26,15 +26,27 @@ public class Library {
         return availableLibraryItems;
     }
 
-    public LibraryItem getBookByTitle(String title) {
+    public Book getBookByTitle(String title) {
         String lower = title.toLowerCase();
-        for (LibraryItem libraryItem : books) {
+        for (Book libraryItem : books) {
             if (libraryItem.getTitle().toLowerCase().equals(lower)) {
                 return libraryItem;
             }
         }
         throw new NoSuchElementException();
     }
+
+    public Movie getMovieByTitle(String title) {
+        String lower = title.toLowerCase();
+        for (Movie libraryItem : movies) {
+            if (libraryItem.getTitle().toLowerCase().equals(lower)) {
+                return libraryItem;
+            }
+        }
+        throw new NoSuchElementException();
+    }
+
+
 
     public void checkoutItem(LibraryItem libraryItem) throws Exception {
         libraryItem.checkout();
@@ -64,6 +76,25 @@ public class Library {
 
     public void addBook(Book book) {
         books.add(book);
+    }
+
+    public boolean bookExists(String title) {
+        return checkIfItemExists(title, books);
+    }
+
+    public boolean movieExists(String title) {
+        return checkIfItemExists(title, movies);
+    }
+
+    private boolean checkIfItemExists(String title, List list) {
+        String lower = title.toLowerCase();
+        for (Object obj : list) {
+            LibraryItem item = (LibraryItem)obj;
+            if (item.getTitle().toLowerCase().equals(lower)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 

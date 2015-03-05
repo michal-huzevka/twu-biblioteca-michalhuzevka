@@ -19,12 +19,16 @@ public class ReturnController {
     public View returnItem(String title) {
         View view = null;
         try {
-            LibraryItem libraryItem = library.getBookByTitle(title);
-            libraryItem.returnItem();
-            view = new GenericView("Thank you for returning the book.\r\n");
+            boolean bookExists = library.bookExists(title);
+            if (bookExists) {
+                library.getBookByTitle(title).returnItem();
+            } else {
+                library.getMovieByTitle(title).returnItem();
+            }
+            view = new GenericView("Thank you for returning the item.\r\n");
             nextState = new MenuState(this.library);
         } catch (Exception ex) {
-            view = new GenericView("That is not a valid book to return. Please try again or type in R to return to the menu.\r\n");
+            view = new GenericView("That is not a valid item to return. Please try again or type in R to return to the menu.\r\n");
             nextState = new ReturnState(this.library);
         }
         return view;

@@ -2,6 +2,7 @@ package com.twu.biblioteca.controller.general;
 
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.view.BookListView;
+import com.twu.biblioteca.view.MovieListView;
 import com.twu.biblioteca.view.View;
 
 /**
@@ -14,5 +15,9 @@ public class MenuController {
     }
     public View GetAvailableBooks() {
         return new BookListView(library.getAvailableBooks());
+    }
+
+    public View GetAvailableMovies() {
+        return new MovieListView(library.getAvailableMovies());
     }
 }

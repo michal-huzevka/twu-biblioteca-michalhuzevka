@@ -31,21 +31,22 @@ public class MenuState extends BaseState {
             view = new GenericView("");
             terminated = true;
 
-        } else if (toLower.equals("l")) {
+        } else if (toLower.equals("b")) {
             view = controller.GetAvailableBooks();
-
+        } else if (toLower.equals("m")) {
+            view = controller.GetAvailableMovies();
         } else if (toLower.equals("c")) {
-            view = new GenericView("Please type in the name of the book you wish to checkout.");
+            view = new GenericView("Please type in the name of the item you wish to checkout.");
             nextState = new CheckoutState(library);
 
         } else if (toLower.equals("r")) {
-            view = new GenericView("Please type in the name of the book you wish to return.");
+            view = new GenericView("Please type in the name of the item you wish to return.");
             nextState = new ReturnState(library);
-        } else if (toLower.equals("m")) {
+        } else if (toLower.equals("o")) {
             view = new MenuView();
         }
         else {
-            view = new GenericView("Select a valid option! Press m to view the menu options. \r\n");
+            view = new GenericView("Select a valid option! Press O to view the menu options. \r\n");
         }
         return view;
     }
