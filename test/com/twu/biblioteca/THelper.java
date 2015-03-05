@@ -1,9 +1,6 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.model.Book;
-import com.twu.biblioteca.model.LibraryItem;
-import com.twu.biblioteca.model.Library;
-import com.twu.biblioteca.model.Movie;
+import com.twu.biblioteca.model.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -16,6 +13,7 @@ public class THelper {
         Library library = new Library();
         library.addBooks(listOfBooks());
         library.addMovies(listOfMovies());
+        library.setAccountCollection(accountCollection());
         return library;
     }
 
@@ -34,4 +32,11 @@ public class THelper {
         movies.add(new Movie("The Shawshank Redemption", "?", "1995", "10"));
         return movies;
     }
+
+    public static AccountCollection accountCollection() {
+        AccountCollection collection = new AccountCollection();
+        collection.add(new UserAccount("1234", "asd123", "John", "Smith", UserType.CUSTOMER));
+        return collection;
+    }
+
 }

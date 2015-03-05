@@ -1,10 +1,7 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.controller.console.ConsoleController;
-import com.twu.biblioteca.model.Book;
-import com.twu.biblioteca.model.LibraryItem;
-import com.twu.biblioteca.model.Library;
-import com.twu.biblioteca.model.Movie;
+import com.twu.biblioteca.model.*;
 import com.twu.biblioteca.view.MenuView;
 import com.twu.biblioteca.view.View;
 
@@ -68,9 +65,13 @@ public class BibliotecaApp {
         List<Movie> movies = new LinkedList<Movie>();
         movies.add(new Movie("Pan's Labyrinth", "Guillermo del Toro", "2006", "10"));
         movies.add(new Movie("The Shawshank Redemption", "Frank Darabont", "1994", "10" ));
+
         Library library = new Library();
         library.addBooks(books);
         library.addMovies(movies);
+        AccountCollection collection = library.getAccountCollection();
+        collection.add(new UserAccount("0000", "asd123", "John", "Smith", UserType.CUSTOMER));
+        collection.add(new UserAccount("1111", "asd123", "Jack", "Johnson", UserType.LIBRARIAN));
         return library;
     }
 }

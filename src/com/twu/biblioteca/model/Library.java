@@ -10,10 +10,12 @@ import java.util.NoSuchElementException;
 public class Library {
     private List<Book> books;
     private List<Movie> movies;
+    private AccountCollection accountCollection;
 
     public Library() {
         books = new ArrayList<Book>();
         movies = new ArrayList<Movie>();
+        setAccountCollection(new AccountCollection());
     }
 
     public List<Book> getAvailableBooks() {
@@ -98,6 +100,11 @@ public class Library {
     }
 
 
+    public AccountCollection getAccountCollection() {
+        return accountCollection;
+    }
 
-
+    public void setAccountCollection(AccountCollection accountCollection) {
+        this.accountCollection = accountCollection;
+    }
 }

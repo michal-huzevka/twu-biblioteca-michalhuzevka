@@ -30,6 +30,6 @@ public class Movie extends LibraryItem {
     }
 
     public String toString() {
-        return getTitle() + " by " + getDirector() + " in " + getYearCreated();
+        return getTitle() + " directed by " + getDirector() + " in " + getYearCreated() + " with a rating of " + getRating();
     }
 }
