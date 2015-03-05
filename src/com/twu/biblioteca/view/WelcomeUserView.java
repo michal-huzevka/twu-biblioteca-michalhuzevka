@@ -10,7 +10,7 @@ import java.util.List;
  * Created by michal on 2/23/15.
  */
 public class WelcomeUserView implements View {
-    UserAccount account;
+    private UserAccount account;
     public WelcomeUserView(UserAccount account) {
         this.account = account;
     }

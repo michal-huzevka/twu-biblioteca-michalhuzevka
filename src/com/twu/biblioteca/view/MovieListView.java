@@ -10,7 +10,7 @@ import java.util.List;
  * Created by michal on 2/23/15.
  */
 public class MovieListView implements View {
-    List<Movie> libraryItems;
+    private List<Movie> libraryItems;
     public MovieListView(List<Movie> libraryItems) {
 
         this.libraryItems = libraryItems;
