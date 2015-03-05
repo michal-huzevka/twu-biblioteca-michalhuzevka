@@ -3,10 +3,9 @@ package com.twu.biblioteca.controller.general;
 import com.twu.biblioteca.controller.console.BaseState;
 import com.twu.biblioteca.controller.console.CheckoutState;
 import com.twu.biblioteca.controller.console.MenuState;
-import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.model.LibraryItem;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.view.GenericView;
-import com.twu.biblioteca.view.MenuView;
 import com.twu.biblioteca.view.View;
 
 /**
@@ -22,8 +21,8 @@ public class CheckoutController {
     public View checkout(String title) {
         View view = null;
         try {
-            Book book = library.getBookByTitle(title);
-            book.checkout();
+            LibraryItem libraryItem = library.getBookByTitle(title);
+            libraryItem.checkout();
             view = new GenericView("Thank you! Enjoy the book.\r\n");
             nextState = new MenuState(this.library);
         } catch (Exception ex) {

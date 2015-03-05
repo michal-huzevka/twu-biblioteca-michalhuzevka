@@ -1,7 +1,8 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.model.LibraryItem;
 import com.twu.biblioteca.model.Library;
+import com.twu.biblioteca.model.Movie;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -11,15 +12,24 @@ import java.util.List;
  */
 public class THelper {
     public static Library initLibrary() {
-        return new Library(listOfBooks());
+        Library library = new Library();
+        library.addBooks(listOfBooks());
+        return library;
     }
 
-    public static List<Book> listOfBooks() {
-        List<Book> books = new LinkedList<Book>();
+    public static List<LibraryItem> listOfBooks() {
+        List<LibraryItem> libraryItems = new LinkedList<LibraryItem>();
 
-        books.add(new Book("The Agile Samurai", "Johnathon Rasmusson", "2002"));
-        books.add(new Book("Software Refactoring", "Martin Fowler", "2004"));
-        books.add(new Book("Design Patterns", "Gang of Four", "1996"));
-        return books;
+        libraryItems.add(new LibraryItem("The Agile Samurai", "Johnathon Rasmusson", "2002"));
+        libraryItems.add(new LibraryItem("Software Refactoring", "Martin Fowler", "2004"));
+        libraryItems.add(new LibraryItem("Design Patterns", "Gang of Four", "1996"));
+        return libraryItems;
+    }
+
+    public static List<Movie> listOfMovies() {
+        List<Movie> movies = new LinkedList<Movie>();
+        movies.add(new Movie("'Star Wars"));
+        movies.add(new Movie("The Shawshank Redemption"));
+        return movies;
     }
 }

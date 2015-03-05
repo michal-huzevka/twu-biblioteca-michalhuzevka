@@ -1,10 +1,9 @@
 package com.twu.biblioteca.controller.general;
 
 import com.twu.biblioteca.controller.console.*;
-import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.model.LibraryItem;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.view.GenericView;
-import com.twu.biblioteca.view.MenuView;
 import com.twu.biblioteca.view.View;
 
 /**
@@ -20,8 +19,8 @@ public class ReturnController {
     public View returnItem(String title) {
         View view = null;
         try {
-            Book book = library.getBookByTitle(title);
-            book.returnBook();
+            LibraryItem libraryItem = library.getBookByTitle(title);
+            libraryItem.returnBook();
             view = new GenericView("Thank you for returning the book.\r\n");
             nextState = new MenuState(this.library);
         } catch (Exception ex) {

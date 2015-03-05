@@ -1,9 +1,7 @@
 package com.twu.biblioteca.controller.console;
 
 import com.twu.biblioteca.controller.general.CheckoutController;
-import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Library;
-import com.twu.biblioteca.view.GenericView;
 import com.twu.biblioteca.view.MenuView;
 import com.twu.biblioteca.view.View;
 

@@ -3,7 +3,7 @@ import com.twu.biblioteca.THelper;
 import com.twu.biblioteca.model.*;
 import org.junit.Assert;
 import org.junit.Test;
-
+import static org.junit.Assert.*;
 import java.util.*;
 
 /**
@@ -13,38 +13,52 @@ public class LibraryTest {
 
     @Test
     public void Should_ListAvailableBooks_When_BooksAreAdded() {
-        List<Book> initialList = THelper.listOfBooks();
-        Library library = new Library(initialList);
+        List<LibraryItem> initialList = THelper.listOfBooks();
+        Library library = new Library();
+        library.addBooks(initialList);
 
-        List<Book> availableBooks = library.getAvailableBooks();
-        assert(availableBooks.containsAll(initialList));
+        List<LibraryItem> availableLibraryItems = library.getAvailableBooks();
+        assert(availableLibraryItems.containsAll(initialList));
 
     }
+
+    @Test
+    public void Should_ListAvailableMovies_When_MoviesAreAdded() {
+        List<Movie> initialList = THelper.listOfMovies();
+        Library library = new Library();
+        library.addMovies(initialList);
+
+        List<Movie> availableMovies = library.getAvailableMovies();
+        assertTrue(availableMovies.containsAll(initialList));
+    }
+
+
+
 
     @Test
     public void Should_RemoveBook_When_BookIsCheckedOut() throws Exception {
         Library library = THelper.initLibrary();
 
-        Book book = library.getBookByTitle("The Agile Samurai");
-        library.checkoutBook(book);
-        List<Book> availableBooks = library.getAvailableBooks();
-        for (Book tmpBook : availableBooks) {
-            assert(tmpBook != book);
+        LibraryItem libraryItem = library.getBookByTitle("The Agile Samurai");
+        library.checkoutBook(libraryItem);
+        List<LibraryItem> availableLibraryItems = library.getAvailableBooks();
+        for (LibraryItem tmpLibraryItem : availableLibraryItems) {
+            assert(tmpLibraryItem != libraryItem);
         }
     }
 
     @Test
     public void GetBookByTitle_Should_ReturnBook() {
         Library library = THelper.initLibrary();
-        Book book = library.getBookByTitle("The Agile Samurai");
-        assert (book.getTitle().equals("The Agile Samurai"));
+        LibraryItem libraryItem = library.getBookByTitle("The Agile Samurai");
+        assert (libraryItem.getTitle().equals("The Agile Samurai"));
     }
 
     @Test
     public void GetBookByTitle_Should_ThrowException_When_NoBooksExist() {
         Library library = THelper.initLibrary();
         try {
-            Book book = library.getBookByTitle("Test book");
+            LibraryItem libraryItem = library.getBookByTitle("Test book");
             Assert.fail("Exception not thrown");
 
         }

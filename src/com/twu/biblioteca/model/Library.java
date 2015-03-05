@@ -8,33 +8,64 @@ import java.util.NoSuchElementException;
  * Created by michal on 2/23/15.
  */
 public class Library {
-    private List<Book> books;
+    private List<LibraryItem> libraryItems;
+    private List<Movie> movies;
 
-    public Library(List<Book> books) {
-        this.books = books;
+    public Library() {
+        libraryItems = new ArrayList<LibraryItem>();
+        movies = new ArrayList<Movie>();
     }
 
-    public List<Book> getAvailableBooks() {
-        List<Book> availableBooks = new ArrayList<Book>();
-        for (Book book : books) {
-            if (book.isAvailable()) {
-                availableBooks.add(book);
+    /*
+    public Library(List<LibraryItem> libraryItems) {
+        this.libraryItems = libraryItems;
+    }
+*/
+    public List<LibraryItem> getAvailableBooks() {
+        List<LibraryItem> availableLibraryItems = new ArrayList<LibraryItem>();
+        for (LibraryItem libraryItem : libraryItems) {
+            if (libraryItem.isAvailable()) {
+                availableLibraryItems.add(libraryItem);
             }
         }
-        return availableBooks;
+        return availableLibraryItems;
     }
 
-    public Book getBookByTitle(String title) {
+    public LibraryItem getBookByTitle(String title) {
         String lower = title.toLowerCase();
-        for (Book book : books) {
-            if (book.getTitle().toLowerCase().equals(lower)) {
-                return book;
+        for (LibraryItem libraryItem : libraryItems) {
+            if (libraryItem.getTitle().toLowerCase().equals(lower)) {
+                return libraryItem;
             }
         }
         throw new NoSuchElementException();
     }
 
-    public void checkoutBook(Book book) throws Exception {
-        book.checkout();
+    public void checkoutBook(LibraryItem libraryItem) throws Exception {
+        libraryItem.checkout();
     }
+
+    public List<Movie> getAvailableMovies() {
+        List<Movie> availableMovies = new ArrayList<Movie>();
+        for (Movie movie : movies) {
+            if (movie.isAvailable()) {
+                availableMovies.add(movie);
+            }
+        }
+        return availableMovies;
+    }
+
+    public void addMovies(List<Movie> newMovies) {
+        movies.addAll(newMovies);
+    }
+
+    public void addMovie(Movie newMovie) {
+        movies.add(newMovie);
+    }
+
+    public void addBooks(List<LibraryItem> books) {
+        libraryItems.addAll(books);
+    }
+
+
 }

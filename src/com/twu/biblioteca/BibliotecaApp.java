@@ -1,7 +1,7 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.controller.console.ConsoleController;
-import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.model.LibraryItem;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.view.MenuView;
 import com.twu.biblioteca.view.View;
@@ -35,7 +35,6 @@ public class BibliotecaApp {
     public static void main(String[] args) {
         System.out.println("Welcome to Biblioteca! Please feel free to view our books.");
         Library library = initDefaultLibrary();
-       // MainController controller = new MainController(library);
         ConsoleController controller = new ConsoleController(library);
         MenuView menu = new MenuView();
         displayView(menu);
@@ -56,13 +55,15 @@ public class BibliotecaApp {
     }
 
     private static Library initDefaultLibrary() {
-        List<Book> books = new LinkedList<Book>();
-        books.add(new Book("A Game of Thrones", "George R. R. Martin", "1996"));
-        books.add(new Book("Frankenstein", "Mary Shelley", "1883"));
-        books.add(new Book("Siddhartha", "Hermann Hesse", "1922"));
-        books.add(new Book("Nausea", "Jean-Paul Sartre", "1938"));
-        books.add(new Book("The Stranger", "Albert Camus", "1942"));
-        books.add(new Book("Out", "Natsuo Kirino", "2004"));
-        return new Library(books);
+        List<LibraryItem> libraryItems = new LinkedList<LibraryItem>();
+        libraryItems.add(new LibraryItem("A Game of Thrones", "George R. R. Martin", "1996"));
+        libraryItems.add(new LibraryItem("Frankenstein", "Mary Shelley", "1883"));
+        libraryItems.add(new LibraryItem("Siddhartha", "Hermann Hesse", "1922"));
+        libraryItems.add(new LibraryItem("Nausea", "Jean-Paul Sartre", "1938"));
+        libraryItems.add(new LibraryItem("The Stranger", "Albert Camus", "1942"));
+        libraryItems.add(new LibraryItem("Out", "Natsuo Kirino", "2004"));
+        Library library = new Library();
+        library.addBooks(libraryItems);
+        return library;
     }
 }

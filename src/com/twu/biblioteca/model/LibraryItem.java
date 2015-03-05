@@ -3,22 +3,22 @@ package com.twu.biblioteca.model;
 /**
  * Created by michal on 2/23/15.
  */
-public class Book {
+public class LibraryItem {
     private String title;
     private String author;
     private String yearPublished;
-    private BookStatus bookStatus;
+    private ItemStatus bookStatus;
 
-    public Book(String title) {
+    public LibraryItem(String title) {
         this.setTitle(title);
-        setBookStatus(BookStatus.AVAILABLE);
+        setBookStatus(ItemStatus.AVAILABLE);
     }
 
-    public Book(String title, String author, String yearPublished) {
+    public LibraryItem(String title, String author, String yearPublished) {
         this.title = title;
         this.author = author;
         this.yearPublished = yearPublished;
-        setBookStatus(BookStatus.AVAILABLE);
+        setBookStatus(ItemStatus.AVAILABLE);
     }
 
     public String toString() {
@@ -26,17 +26,17 @@ public class Book {
     }
 
     public void checkout() throws Exception {
-        if (getBookStatus() != BookStatus.AVAILABLE) {
+        if (getBookStatus() != ItemStatus.AVAILABLE) {
             throw new Exception("Book is not available for checkout");
         }
-        setBookStatus(BookStatus.CHECKED_OUT);
+        setBookStatus(ItemStatus.CHECKED_OUT);
     }
 
     public  void returnBook() throws  Exception {
-        if (getBookStatus() != BookStatus.CHECKED_OUT) {
+        if (getBookStatus() != ItemStatus.CHECKED_OUT) {
             throw new Exception("Book is already in the library");
         }
-        setBookStatus(BookStatus.AVAILABLE);
+        setBookStatus(ItemStatus.AVAILABLE);
     }
 
     public String getTitle() {
@@ -49,14 +49,14 @@ public class Book {
 
 
     public boolean isAvailable() {
-        return getBookStatus() == BookStatus.AVAILABLE;
+        return getBookStatus() == ItemStatus.AVAILABLE;
     }
 
-    private BookStatus getBookStatus() {
+    private ItemStatus getBookStatus() {
         return bookStatus;
     }
 
-    private void setBookStatus(BookStatus bookStatus) {
+    private void setBookStatus(ItemStatus bookStatus) {
         this.bookStatus = bookStatus;
     }
 
