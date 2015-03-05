@@ -20,7 +20,7 @@ public class ReturnController {
         View view = null;
         try {
             LibraryItem libraryItem = library.getBookByTitle(title);
-            libraryItem.returnBook();
+            libraryItem.returnItem();
             view = new GenericView("Thank you for returning the book.\r\n");
             nextState = new MenuState(this.library);
         } catch (Exception ex) {

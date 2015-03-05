@@ -5,24 +5,13 @@ package com.twu.biblioteca.model;
  */
 public class LibraryItem {
     private String title;
-    private String author;
-    private String yearPublished;
+    private String yearCreated;
     private ItemStatus itemStatus;
 
-    public LibraryItem(String title) {
-        this.setTitle(title);
-        setItemStatus(ItemStatus.AVAILABLE);
-    }
-
-    public LibraryItem(String title, String author, String yearPublished) {
+    public LibraryItem(String title, String yearCreated) {
         this.title = title;
-        this.author = author;
-        this.yearPublished = yearPublished;
+        this.yearCreated = yearCreated;
         setItemStatus(ItemStatus.AVAILABLE);
-    }
-
-    public String toString() {
-        return getTitle() + " by " + getAuthor() + " in " + getYearPublished();
     }
 
     public void checkout() throws Exception {
@@ -32,7 +21,7 @@ public class LibraryItem {
         setItemStatus(ItemStatus.CHECKED_OUT);
     }
 
-    public  void returnBook() throws  Exception {
+    public  void returnItem() throws  Exception {
         if (getItemStatus() != ItemStatus.CHECKED_OUT) {
             throw new Exception("Item is already in the library");
         }
@@ -60,19 +49,12 @@ public class LibraryItem {
         this.itemStatus = bookStatus;
     }
 
-    public String getAuthor() {
-        return author;
+
+    public String getYearCreated() {
+        return yearCreated;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public String getYearPublished() {
-        return yearPublished;
-    }
-
-    public void setYearPublished(String yearPublished) {
-        this.yearPublished = yearPublished;
+    public void setYearCreated(String yearCreated) {
+        this.yearCreated = yearCreated;
     }
 }

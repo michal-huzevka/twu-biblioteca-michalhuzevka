@@ -10,7 +10,7 @@ import org.junit.Test;
 public class LibraryItemTest {
     @Test
     public void Should_UpdateStatus_WhenBookIsCheckedOut() throws Exception{
-        LibraryItem libraryItem = new LibraryItem("Software Refactoring");
+        LibraryItem libraryItem = sampleLibraryItem();
         assert(libraryItem.isAvailable());
 
         libraryItem.checkout();
@@ -20,7 +20,7 @@ public class LibraryItemTest {
 
     @Test
     public void Should_ThrowException_IfBookIsCheckedOutTwice() throws  Exception{
-        LibraryItem libraryItem = new LibraryItem("Software Refactoring");
+        LibraryItem libraryItem = sampleLibraryItem();
 
         libraryItem.checkout();
         try {
@@ -33,26 +33,31 @@ public class LibraryItemTest {
 
     @Test
     public void Should_UpdateStatus_WhenBookIsReturned() throws Exception{
-        LibraryItem libraryItem = new LibraryItem("Software Refactoring");
+        LibraryItem libraryItem = sampleLibraryItem();
         assert(libraryItem.isAvailable());
 
         libraryItem.checkout();
         assert(!libraryItem.isAvailable());
 
-        libraryItem.returnBook();
+        libraryItem.returnItem();
         assert (libraryItem.isAvailable());
 
     }
 
     @Test
     public void Should_ThrowException_IfBookIsIncorrectlyReturned() throws  Exception{
-        LibraryItem libraryItem = new LibraryItem("Software Refactoring");
+        LibraryItem libraryItem = sampleLibraryItem();
 
         try {
-            libraryItem.returnBook();
+            libraryItem.returnItem();
             Assert.fail();
         } catch (Exception ex) {
 
         }
     }
+
+    private LibraryItem sampleLibraryItem() {
+        return new LibraryItem("Software Refactoring", "2003");
+    }
+
 }

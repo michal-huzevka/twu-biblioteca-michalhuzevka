@@ -37,7 +37,7 @@ public class LibraryTest {
         List<Movie> availableMovies = library.getAvailableMovies();
         assertTrue(availableMovies.containsAll(initialList));
 
-        Movie movie = new Movie("TestMovie");
+        Movie movie = new Movie("TestMovie", "Test", "2003", "10");
         library.addMovie(movie);
         availableMovies = library.getAvailableMovies();
         assertTrue(availableMovies.contains(movie));

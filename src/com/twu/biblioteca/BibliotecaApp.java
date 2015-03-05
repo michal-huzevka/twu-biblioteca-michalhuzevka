@@ -4,6 +4,7 @@ import com.twu.biblioteca.controller.console.ConsoleController;
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.LibraryItem;
 import com.twu.biblioteca.model.Library;
+import com.twu.biblioteca.model.Movie;
 import com.twu.biblioteca.view.MenuView;
 import com.twu.biblioteca.view.View;
 
@@ -17,7 +18,7 @@ X Refactor controllers so they are split into two: one for handling console inpu
 Add in unit tests for each state
 X Create an item class that Book inherits from
 X Ability to check out an item rather than a book
-Movies should have a name, year, director and movie rating (from 1-10 or unrated)
+X Movies should have a name, year, director and movie rating (from 1-10 or unrated)
 List Movies
 Checkout Movie
 Book must be checked out to a user
@@ -63,8 +64,13 @@ public class BibliotecaApp {
         books.add(new Book("Nausea", "Jean-Paul Sartre", "1938"));
         books.add(new Book("The Stranger", "Albert Camus", "1942"));
         books.add(new Book("Out", "Natsuo Kirino", "2004"));
+
+        List<Movie> movies = new LinkedList<Movie>();
+        movies.add(new Movie("Pan's Labyrinth", "Guillermo del Toro", "2006", "10"));
+        movies.add(new Movie("The Shawshank Redemption", "Frank Darabont", "1994", "10" ));
         Library library = new Library();
         library.addBooks(books);
+        library.addMovies(movies);
         return library;
     }
 }

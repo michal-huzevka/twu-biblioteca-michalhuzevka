@@ -29,8 +29,8 @@ public class THelper {
 
     public static List<Movie> listOfMovies() {
         List<Movie> movies = new LinkedList<Movie>();
-        movies.add(new Movie("'Star Wars"));
-        movies.add(new Movie("The Shawshank Redemption"));
+        movies.add(new Movie("Star Wars", "Steven Spielberg", "1979",  "10"));
+        movies.add(new Movie("The Shawshank Redemption", "?", "1995", "10"));
         return movies;
     }
 }
