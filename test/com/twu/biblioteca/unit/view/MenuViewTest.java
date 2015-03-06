@@ -17,6 +17,7 @@ public class MenuViewTest {
         MenuView view = new MenuView(THelper.sampleUser());
         assertTrue(view.output().contains("C to Check out an item"));
         assertTrue(view.output().contains("R to Return an item"));
+        assertTrue(view.output().contains("U to view User details"));
         assertFalse(view.output().contains("L to Login"));
     }
 
@@ -25,6 +26,7 @@ public class MenuViewTest {
         MenuView view = new MenuView(null);
         assertFalse(view.output().contains("C to Check out an item"));
         assertFalse(view.output().contains("R to Return an item"));
+        assertFalse(view.output().contains("U to view User details"));
         assertTrue(view.output().contains("L to Login"));
     }
 
@@ -33,6 +35,7 @@ public class MenuViewTest {
         MenuView view = new MenuView(THelper.sampleLibrarian());
         assertTrue(view.output().contains("B to list borrowed Books"));
         assertTrue(view.output().contains("M to list borrowed Movies"));
+        assertFalse(view.output().contains("U to view User details"));
         assertFalse(view.output().contains("C to Check out an item"));
         assertFalse(view.output().contains("R to Return an item"));
         assertFalse(view.output().contains("L to Login"));

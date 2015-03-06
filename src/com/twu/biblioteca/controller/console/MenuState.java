@@ -5,6 +5,7 @@ import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.UserType;
 import com.twu.biblioteca.view.GenericView;
 import com.twu.biblioteca.view.MenuView;
+import com.twu.biblioteca.view.UserDetailsView;
 import com.twu.biblioteca.view.View;
 
 /**
@@ -59,7 +60,11 @@ public class MenuState extends BaseState {
             }
         }
 
-
+        if (toLower.equals("u")
+                && library.getActiveUser() != null
+                && library.getActiveUser().getUserType() == UserType.CUSTOMER) {
+            view = new UserDetailsView(library.getActiveUser());
+        }
         if (toLower.equals("o")) {
             view = new MenuView(library.getActiveUser());
         }

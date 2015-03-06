@@ -55,4 +55,17 @@ public class MenuStateTest {
         View view = menuState.action("m");
         assertTrue(view instanceof LibrarianMovieListView);
     }
+
+    @Test
+    public void Should_ShowUserDetails_When_UIsPressedAsACustomer() {
+        library.setActiveUserID(THelper.sampleUser().getID());
+        View view = menuState.action("u");
+        assertTrue(view instanceof UserDetailsView);
+    }
+
+    @Test
+    public void Should_NotShowUserDetails_When_UIsPressedAndUserIsNotACustomer() {
+        View view = menuState.action("u");
+        assertFalse(view instanceof UserDetailsView);
+    }
 }
