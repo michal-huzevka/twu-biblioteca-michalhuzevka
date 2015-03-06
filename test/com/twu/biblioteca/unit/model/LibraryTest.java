@@ -47,7 +47,7 @@ public class LibraryTest {
 
 
     @Test
-    public void Should_RemoveBook_When_BookIsCheckedOut() throws Exception {
+    public void Should_RemoveBook_When_BookIsCheckedOut1() throws Exception {
         Library library = THelper.initLibrary();
         UserAccount user = THelper.sampleUser();
         LibraryItem libraryItem = library.getBookByTitle("The Agile Samurai");
@@ -56,6 +56,17 @@ public class LibraryTest {
         for (LibraryItem tmpLibraryItem : availableLibraryItems) {
             assert(tmpLibraryItem != libraryItem);
         }
+    }
+
+    @Test
+    public void Should_RemoveBook_When_BookIsCheckedOut2() throws Exception {
+        Library library = THelper.initLibrary();
+        UserAccount user = THelper.sampleUser();
+        Book libraryItem = library.getBookByTitle("The Agile Samurai");
+        library.checkoutItem(libraryItem, user.getID());
+        List<Book> list = library.getUnavailableBooks();
+        Book book = list.get(0);
+        assert(book == libraryItem);
     }
 
     @Test

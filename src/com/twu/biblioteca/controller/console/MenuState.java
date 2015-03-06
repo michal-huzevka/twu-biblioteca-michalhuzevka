@@ -3,7 +3,6 @@ package com.twu.biblioteca.controller.console;
 import com.twu.biblioteca.controller.general.MenuController;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.UserType;
-import com.twu.biblioteca.view.BookListView;
 import com.twu.biblioteca.view.GenericView;
 import com.twu.biblioteca.view.MenuView;
 import com.twu.biblioteca.view.View;
@@ -36,7 +35,11 @@ public class MenuState extends BaseState {
             view = loginLogoutCommand();
         }
         if (toLower.equals("b")) {
-            view = controller.GetAvailableBooks();
+            if (library.getActiveUser() != null && library.getActiveUser().getUserType() == UserType.LIBRARIAN) {
+                view = controller.GetUnavailableBooks();
+            } else {
+                view = controller.GetAvailableBooks();
+            }
         }
         if (toLower.equals("m")) {
             view = controller.GetAvailableMovies();

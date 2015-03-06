@@ -20,15 +20,6 @@ public class Library {
         activeUserID = null;
     }
 
-    public List<Book> getAvailableBooks() {
-        List<Book> availableLibraryItems = new ArrayList<Book>();
-        for (Book libraryItem : books) {
-            if (libraryItem.isAvailable()) {
-                availableLibraryItems.add(libraryItem);
-            }
-        }
-        return availableLibraryItems;
-    }
 
     public Book getBookByTitle(String title) {
         String lower = title.toLowerCase();
@@ -64,6 +55,26 @@ public class Library {
             }
         }
         return availableMovies;
+    }
+
+    public List<Book> getAvailableBooks() {
+        List<Book> availableLibraryItems = new ArrayList<Book>();
+        for (Book libraryItem : books) {
+            if (libraryItem.isAvailable()) {
+                availableLibraryItems.add(libraryItem);
+            }
+        }
+        return availableLibraryItems;
+    }
+
+    public List<Book> getUnavailableBooks() {
+        List<Book> list = new ArrayList<Book>();
+        for (Book libraryItem : books) {
+            if (!libraryItem.isAvailable()) {
+                list.add(libraryItem);
+            }
+        }
+        return list;
     }
 
     public void addMovies(List<Movie> newMovies) {

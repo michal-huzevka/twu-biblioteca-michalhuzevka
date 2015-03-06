@@ -31,6 +31,8 @@ public class MenuViewTest {
     @Test
     public void Should_DisplayCorrectly_If_UserIsLoggedInAsLibrarian() {
         MenuView view = new MenuView(THelper.sampleLibrarian());
+        assertTrue(view.output().contains("B to list borrowed Books"));
+        assertTrue(view.output().contains("M to list borrowed Movies"));
         assertFalse(view.output().contains("C to Check out an item"));
         assertFalse(view.output().contains("R to Return an item"));
         assertFalse(view.output().contains("L to Login"));
