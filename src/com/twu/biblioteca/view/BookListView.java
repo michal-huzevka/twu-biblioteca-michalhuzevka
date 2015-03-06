@@ -9,9 +9,8 @@ import java.util.List;
  * Created by michal on 2/23/15.
  */
 public class BookListView implements View {
-    List<Book> libraryItems;
+    private List<Book> libraryItems;
     public BookListView(List<Book> libraryItems) {
-
         this.libraryItems = libraryItems;
     }
     public String output() {

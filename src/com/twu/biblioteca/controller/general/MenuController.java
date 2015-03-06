@@ -17,6 +17,10 @@ public class MenuController {
         return new BookListView(library.getAvailableBooks());
     }
 
+    public View GetUnAvailableBooks() {
+        return null;
+    }
+
     public View GetAvailableMovies() {
         return new MovieListView(library.getAvailableMovies());
     }

@@ -2,6 +2,7 @@ package com.twu.biblioteca.controller.console;
 
 import com.twu.biblioteca.controller.general.MenuController;
 import com.twu.biblioteca.model.Library;
+import com.twu.biblioteca.model.UserType;
 import com.twu.biblioteca.view.BookListView;
 import com.twu.biblioteca.view.GenericView;
 import com.twu.biblioteca.view.MenuView;
@@ -32,13 +33,7 @@ public class MenuState extends BaseState {
             terminated = true;
         }
         if (toLower.equals("l")) {
-            if (library.getActiveUser() == null) {
-                view = new GenericView("Please enter your library ID to login.\r\n");
-                nextState = new EnterLibraryIDState(library);
-            } else {
-                library.setActiveUserID(null);
-                view = new GenericView("You are now logged out. Press O to view the menu options.");
-            }
+            view = loginLogoutCommand();
         }
         if (toLower.equals("b")) {
             view = controller.GetAvailableBooks();
@@ -46,20 +41,35 @@ public class MenuState extends BaseState {
         if (toLower.equals("m")) {
             view = controller.GetAvailableMovies();
         }
-        if (toLower.equals("c")) {
-            view = new GenericView("Please type in the name of the item you wish to checkout.\r\n");
-            nextState = new CheckoutState(library);
+        if (library.getActiveUser() != null && library.getActiveUser().getUserType() == UserType.CUSTOMER) {
+            if (toLower.equals("c")) {
+                view = new GenericView("Please type in the name of the item you wish to checkout.\r\n");
+                nextState = new CheckoutState(library);
+            }
+            if (toLower.equals("r")) {
+                view = new GenericView("Please type in the name of the item you wish to return.\r\n");
+                nextState = new ReturnState(library);
+            }
         }
-        if (toLower.equals("r")) {
-            view = new GenericView("Please type in the name of the item you wish to return.\r\n");
-            nextState = new ReturnState(library);
-        }
+
         if (toLower.equals("o")) {
             view = new MenuView(library.getActiveUser());
         }
         //default view
         if (view == null) {
             view = new GenericView("Select a valid option! Press O to view the menu options. \r\n");
+        }
+        return view;
+    }
+
+    private View loginLogoutCommand() {
+        View view;
+        if (library.getActiveUser() == null) {
+            view = new GenericView("Please enter your library ID to login.\r\n");
+            nextState = new EnterLibraryIDState(library);
+        } else {
+            library.setActiveUserID(null);
+            view = new GenericView("You are now logged out. Press O to view the menu options.");
         }
         return view;
     }
