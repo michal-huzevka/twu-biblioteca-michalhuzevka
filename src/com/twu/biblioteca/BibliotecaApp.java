@@ -70,9 +70,9 @@ public class BibliotecaApp {
         library.addBooks(books);
         library.addMovies(movies);
         AccountCollection collection = library.getAccountCollection();
-        collection.add(new UserAccount("0000", "asd123", "John", "Smith", UserType.CUSTOMER));
-        collection.add(new UserAccount("1111", "asd123", "John", "Washington", UserType.CUSTOMER));
-        collection.add(new UserAccount("2222", "asd123", "Jack", "Johnson", UserType.LIBRARIAN));
+        collection.add(new UserAccount("0000", "asd123", "John", "Smith", "a@hotmail.com", "12341234", UserType.CUSTOMER));
+        collection.add(new UserAccount("1111", "asd123", "John", "Washington", "b@hotmail.com", "", UserType.CUSTOMER));
+        collection.add(new UserAccount("2222", "asd123", "Jack", "Johnson", "", "", UserType.LIBRARIAN));
         return library;
     }
 }

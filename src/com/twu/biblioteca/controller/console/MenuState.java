@@ -59,6 +59,7 @@ public class MenuState extends BaseState {
             }
         }
 
+
         if (toLower.equals("o")) {
             view = new MenuView(library.getActiveUser());
         }

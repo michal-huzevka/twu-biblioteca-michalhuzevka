@@ -9,14 +9,19 @@ public class UserAccount {
     private String password;
     private String firstName;
     private String lastName;
+    private String email;
+    private String phoneNumber;
+
     private UserType userType;
 
-    public UserAccount(String ID, String password, String firstName, String lastName, UserType userType) {
+    public UserAccount(String ID, String password, String firstName, String lastName, String email, String phoneNumber, UserType userType) {
         this.ID = ID;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.userType = userType;
+        this.email = email;
+        this.phoneNumber = "44445555";
     }
 
     public String getID() {
@@ -37,5 +42,13 @@ public class UserAccount {
 
     public UserType getUserType() {
         return userType;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 }

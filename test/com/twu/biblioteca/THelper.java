@@ -41,11 +41,11 @@ public class THelper {
     }
 
     public static UserAccount sampleUser() {
-        return new UserAccount("1234", "asd123", "John", "Smith", UserType.CUSTOMER);
+        return new UserAccount("1234", "asd123", "John", "Smith", "john@hotmail.com", "44445555", UserType.CUSTOMER);
     }
 
     public static UserAccount sampleLibrarian() {
-        return new UserAccount("2222", "asd123", "Michael", "Dunphey", UserType.LIBRARIAN);
+        return new UserAccount("2222", "asd123", "Michael", "Dunphey", "michal@gmail.com", "12340000", UserType.LIBRARIAN);
     }
 
 }
