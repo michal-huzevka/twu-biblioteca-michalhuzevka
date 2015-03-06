@@ -77,6 +77,16 @@ public class Library {
         return list;
     }
 
+    public List<Movie> getUnavailableMovies() {
+        List<Movie> list = new ArrayList<Movie>();
+        for (Movie libraryItem : movies) {
+            if (!libraryItem.isAvailable()) {
+                list.add(libraryItem);
+            }
+        }
+        return list;
+    }
+
     public void addMovies(List<Movie> newMovies) {
         movies.addAll(newMovies);
     }

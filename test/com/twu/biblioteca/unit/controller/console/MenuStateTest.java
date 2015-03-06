@@ -4,9 +4,7 @@ import com.twu.biblioteca.THelper;
 import com.twu.biblioteca.controller.console.ConsoleController;
 import com.twu.biblioteca.controller.console.MenuState;
 import com.twu.biblioteca.model.Library;
-import com.twu.biblioteca.view.BookListView;
-import com.twu.biblioteca.view.LibrarianBookListView;
-import com.twu.biblioteca.view.View;
+import com.twu.biblioteca.view.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -43,5 +41,18 @@ public class MenuStateTest {
         library.setActiveUserID(THelper.sampleLibrarian().getID());
         View view = menuState.action("b");
         assertTrue(view instanceof LibrarianBookListView);
+    }
+
+    @Test
+    public void Should_ShowAvailableMovies_When_MIsPressedAndUserIsNotLibrarian() {
+        View view = menuState.action("m");
+        assertTrue(view instanceof MovieListView);
+    }
+
+    @Test
+    public void Should_ShowUnavailableMovies_When_MIsPressedAndUserIsLibrarian() {
+        library.setActiveUserID(THelper.sampleLibrarian().getID());
+        View view = menuState.action("m");
+        assertTrue(view instanceof LibrarianMovieListView);
     }
 }

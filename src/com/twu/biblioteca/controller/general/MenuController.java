@@ -1,10 +1,7 @@
 package com.twu.biblioteca.controller.general;
 
 import com.twu.biblioteca.model.Library;
-import com.twu.biblioteca.view.BookListView;
-import com.twu.biblioteca.view.LibrarianBookListView;
-import com.twu.biblioteca.view.MovieListView;
-import com.twu.biblioteca.view.View;
+import com.twu.biblioteca.view.*;
 
 /**
  * Created by michalhuzevka on 4/03/15.
@@ -24,5 +21,9 @@ public class MenuController {
 
     public View GetAvailableMovies() {
         return new MovieListView(library.getAvailableMovies());
+    }
+
+    public View GetUnavailableMovies() {
+        return new LibrarianMovieListView(library.getUnavailableMovies());
     }
 }

@@ -70,6 +70,17 @@ public class LibraryTest {
     }
 
     @Test
+    public void Should_RemoveMovie_When_MovieIsCheckedOut() throws Exception {
+        Library library = THelper.initLibrary();
+        UserAccount user = THelper.sampleUser();
+        Movie libraryItem = library.getMovieByTitle("Star Wars");
+        library.checkoutItem(libraryItem, user.getID());
+        List<Movie> list = library.getUnavailableMovies();
+        Movie movie = list.get(0);
+        assert(movie == libraryItem);
+    }
+
+    @Test
     public void GetBookByTitle_Should_ReturnBook() {
         Library library = THelper.initLibrary();
         LibraryItem libraryItem = library.getBookByTitle("The Agile Samurai");

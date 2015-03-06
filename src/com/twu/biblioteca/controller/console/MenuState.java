@@ -42,7 +42,11 @@ public class MenuState extends BaseState {
             }
         }
         if (toLower.equals("m")) {
-            view = controller.GetAvailableMovies();
+            if (library.getActiveUser() != null && library.getActiveUser().getUserType() == UserType.LIBRARIAN) {
+                view = controller.GetUnavailableMovies();
+            } else {
+                view = controller.GetAvailableMovies();
+            }
         }
         if (library.getActiveUser() != null && library.getActiveUser().getUserType() == UserType.CUSTOMER) {
             if (toLower.equals("c")) {
