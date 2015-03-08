@@ -1,11 +1,9 @@
 package com.twu.biblioteca.model;
 
-import java.util.Scanner;
-
 /**
  * Created by michalhuzevka on 9/03/15.
  */
-public class StubReader implements  IReader {
+public class StubReader implements Reader {
     private String fakeInput = "";
     public String readLine() {
 

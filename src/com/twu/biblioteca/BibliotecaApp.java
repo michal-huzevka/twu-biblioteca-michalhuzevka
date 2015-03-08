@@ -33,8 +33,8 @@ public class BibliotecaApp {
     private static Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
-        IReader reader = new ConsoleReader();
-        IWriter writer = new ConsoleWriter();
+        Reader reader = new ConsoleReader();
+        Writer writer = new ConsoleWriter();
         Library library = initDefaultLibrary();
         ConsoleController controller = new ConsoleController(library, reader, writer);
 

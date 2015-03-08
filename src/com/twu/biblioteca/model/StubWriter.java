@@ -5,7 +5,7 @@ import com.twu.biblioteca.view.View;
 /**
  * Created by michalhuzevka on 9/03/15.
  */
-public class StubWriter implements IWriter {
+public class StubWriter implements Writer {
     private View lastView;
     public void writeView(View view) {
         lastView = view;

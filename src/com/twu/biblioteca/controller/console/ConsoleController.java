@@ -1,7 +1,7 @@
 package com.twu.biblioteca.controller.console;
 
-import com.twu.biblioteca.model.IReader;
-import com.twu.biblioteca.model.IWriter;
+import com.twu.biblioteca.model.Reader;
+import com.twu.biblioteca.model.Writer;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.view.View;
 
@@ -12,10 +12,10 @@ public class ConsoleController
 {
     private BaseState currentState;
     private Library library;
-    private IReader reader;
-    private IWriter writer;
+    private Reader reader;
+    private Writer writer;
 
-    public ConsoleController(Library library, IReader reader, IWriter writer) {
+    public ConsoleController(Library library, Reader reader, Writer writer) {
         this.library = library;
         currentState = new MenuState(library);
         this.reader = reader;
