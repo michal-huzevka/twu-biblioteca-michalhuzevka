@@ -10,24 +10,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-/*
-TODO:
-X Refactor controllers so they are split into two: one for handling console input and one for performing actions
-Add in unit tests for each state
-X Create an item class that Book inherits from
-X Ability to check out an item rather than a book
-X Movies should have a name, year, director and movie rating (from 1-10 or unrated)
-X List Movies
-X Checkout Movie
-Book must be checked out to a user
-Users must login to checkout and return books
-Predefined user credentials
-View user account information
-
-Hamcrust
-Mockito
-EasyMock
- */
 public class BibliotecaApp {
 
     private static Scanner in = new Scanner(System.in);
