@@ -13,7 +13,7 @@ import org.junit.Test;
  */
 public class CheckoutAndReturnTest {
     @Test
-    public void CheckOutAndReturn1() {
+    public void checkOutAndReturn1() {
         Library library = THelper.initLibrary();
         UserAccount user = THelper.sampleUser();
         library.setActiveUserID(user.getID());
@@ -45,7 +45,7 @@ public class CheckoutAndReturnTest {
     }
 
     @Test
-    public void CheckOutAndReturn2() {
+    public void checkOutAndReturn2() {
         Library library = THelper.initLibrary();
         ConsoleController controller = new ConsoleController(library);
         LibraryItem libraryItem = library.getBookByTitle("Design Patterns");

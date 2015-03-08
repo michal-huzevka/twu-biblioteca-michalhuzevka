@@ -22,7 +22,7 @@ import com.twu.biblioteca.view.View;
  */
 public class LoginTest {
     @Test
-    public void LoginTest1() {
+    public void loginTest1() {
         Library library = THelper.initLibrary();
         View view = null;
 

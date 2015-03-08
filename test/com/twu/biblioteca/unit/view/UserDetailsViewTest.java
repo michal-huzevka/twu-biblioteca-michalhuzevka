@@ -19,7 +19,7 @@ import static org.junit.Assert.assertTrue;
 public class UserDetailsViewTest {
 
     @Test
-    public void Output_ShouldDisplayListOfMovies() throws Exception {
+    public void output_ShouldDisplayListOfMovies() throws Exception {
         UserAccount sampleUser = new UserAccount("1234", "asd123", "John", "Smith", "john@hotmail.com", "44445555", UserType.CUSTOMER);
         UserDetailsView view = new UserDetailsView(sampleUser);
         String output = view.output();

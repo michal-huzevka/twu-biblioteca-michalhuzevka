@@ -10,7 +10,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class UserAccountTest {
     @Test
-    public void Should_InitializeMembers_AfterConstructorIsCalled() {
+    public void should_InitializeMembers_AfterConstructorIsCalled() {
         UserAccount account = new UserAccount("1234", "asd123", "John", "Smith", "a@hotmail.com", "44445555", UserType.CUSTOMER);
         assertTrue(account.getID().equals("1234"));
         assertTrue(account.getPassword().equals("asd123"));

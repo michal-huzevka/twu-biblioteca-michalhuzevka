@@ -17,7 +17,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class BookListViewTest {
     @Test
-    public void Output_ShouldDisplayListOfBooks() {
+    public void output_ShouldDisplayListOfBooks() {
 
         BookListView view = new BookListView(THelper.listOfBooks());
         String output = view.output();

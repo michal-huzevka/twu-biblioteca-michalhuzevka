@@ -12,14 +12,14 @@ import static org.junit.Assert.assertTrue;
  */
 public class AccountCollectionTest {
     @Test
-    public void GetUser_Should_ReturnUser_If_UserExists() {
+    public void getUser_Should_ReturnUser_If_UserExists() {
         AccountCollection collection = THelper.accountCollection();
         UserAccount account = collection.getUser("1234", "asd123");
         assertTrue(account.getID().equals("1234"));
     }
 
     @Test
-    public void GetUser_Should_ThrowException_If_UserDoesntExist() {
+    public void getUser_Should_ThrowException_If_UserDoesntExist() {
         AccountCollection collection = THelper.accountCollection();
         try {
             UserAccount account = collection.getUser("User doesnt exist", "ggg");

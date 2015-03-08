@@ -13,7 +13,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class MenuViewTest {
     @Test
-    public void Should_DisplayCorrectly_If_UserIsLoggedInAsCustomer() {
+    public void should_DisplayCorrectly_If_UserIsLoggedInAsCustomer() {
         MenuView view = new MenuView(THelper.sampleUser());
         assertTrue(view.output().contains("C to Check out an item"));
         assertTrue(view.output().contains("R to Return an item"));
@@ -22,7 +22,7 @@ public class MenuViewTest {
     }
 
     @Test
-    public void Should_DisplayCorrectly_If_UserIsNotLoggedin() {
+    public void should_DisplayCorrectly_If_UserIsNotLoggedin() {
         MenuView view = new MenuView(null);
         assertFalse(view.output().contains("C to Check out an item"));
         assertFalse(view.output().contains("R to Return an item"));
@@ -31,7 +31,7 @@ public class MenuViewTest {
     }
 
     @Test
-    public void Should_DisplayCorrectly_If_UserIsLoggedInAsLibrarian() {
+    public void should_DisplayCorrectly_If_UserIsLoggedInAsLibrarian() {
         MenuView view = new MenuView(THelper.sampleLibrarian());
         assertTrue(view.output().contains("B to list borrowed Books"));
         assertTrue(view.output().contains("M to list borrowed Movies"));

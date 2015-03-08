@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
  */
 public class LibraryItemTest {
     @Test
-    public void Should_UpdateStatus_WhenBookIsCheckedOut() throws Exception{
+    public void should_UpdateStatus_WhenBookIsCheckedOut() throws Exception{
         LibraryItem libraryItem = sampleLibraryItem();
         UserAccount user = THelper.sampleUser();
 
@@ -25,7 +25,7 @@ public class LibraryItemTest {
     }
 
     @Test
-    public void Should_ThrowException_IfBookIsCheckedOutTwice() throws  Exception{
+    public void should_ThrowException_IfBookIsCheckedOutTwice() throws  Exception{
         LibraryItem libraryItem = sampleLibraryItem();
         UserAccount user = THelper.sampleUser();
 
@@ -39,7 +39,7 @@ public class LibraryItemTest {
     }
 
     @Test
-    public void Should_UpdateStatus_WhenBookIsReturned() throws Exception{
+    public void should_UpdateStatus_WhenBookIsReturned() throws Exception{
         LibraryItem libraryItem = sampleLibraryItem();
         UserAccount user = THelper.sampleUser();
 
@@ -54,7 +54,7 @@ public class LibraryItemTest {
     }
 
     @Test
-    public void Should_ThrowException_IfBookIsIncorrectlyReturned() throws  Exception{
+    public void should_ThrowException_IfBookIsIncorrectlyReturned() throws  Exception{
         LibraryItem libraryItem = sampleLibraryItem();
         UserAccount user = THelper.sampleUser();
         try {

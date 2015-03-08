@@ -19,7 +19,7 @@ import static org.junit.Assert.assertTrue;
 public class LibrarianMovieListViewTest {
 
     @Test
-    public void Output_ShouldDisplayListOfMovies() throws Exception {
+    public void output_ShouldDisplayListOfMovies() throws Exception {
         Library library = THelper.initLibrary();
         UserAccount sampleUser = THelper.sampleUser();
         List<Movie> movies = library.getAvailableMovies();

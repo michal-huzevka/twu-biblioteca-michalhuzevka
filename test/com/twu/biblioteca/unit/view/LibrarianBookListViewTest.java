@@ -18,7 +18,7 @@ import static org.junit.Assert.assertTrue;
 public class LibrarianBookListViewTest {
 
     @Test
-    public void Output_ShouldDisplayListOfBooks() throws Exception {
+    public void output_ShouldDisplayListOfBooks() throws Exception {
         Library library = THelper.initLibrary();
         UserAccount sampleUser = THelper.sampleUser();
         List<Book> books = library.getAvailableBooks();

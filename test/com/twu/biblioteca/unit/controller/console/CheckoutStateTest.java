@@ -9,13 +9,16 @@ import com.twu.biblioteca.model.UserAccount;
 import junit.framework.Assert;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
 /**
  * Created by michal on 2/23/15.
  */
 public class CheckoutStateTest {
 
     @Test
-    public void Should_ReturnToMenu_WhenRIsPressed() {
+    public void should_ReturnToMenu_WhenRIsPressed() {
         Library library = THelper.initLibrary();
         CheckoutState checkoutState = new CheckoutState(library);
         checkoutState.action("r");
@@ -23,7 +26,7 @@ public class CheckoutStateTest {
     }
 
     @Test
-    public void Should_ReturnToMenu_When_ItemIsCheckedOut() {
+    public void should_ReturnToMenu_When_ItemIsCheckedOut() {
         Library library = THelper.initLibrary();
         UserAccount user = THelper.sampleUser();
         library.setActiveUserID(user.getID());
@@ -33,7 +36,7 @@ public class CheckoutStateTest {
     }
 
     @Test
-    public void Should_MakeItemUnavailable_When_ItemIsCheckedOut() {
+    public void should_MakeItemUnavailable_When_ItemIsCheckedOut() {
         Library library = THelper.initLibrary();
         UserAccount user = THelper.sampleUser();
         library.setActiveUserID(user.getID());

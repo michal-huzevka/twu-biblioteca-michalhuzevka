@@ -11,7 +11,7 @@ import org.junit.Test;
 public class ConsoleControllerTest {
 
     @Test
-    public void Should_Terminate_WhenQIsPressed() {
+    public void should_Terminate_WhenQIsPressed() {
         ConsoleController controller = new ConsoleController(THelper.initLibrary());
         assert(!controller.isTerminated());
         controller.action("Q");
@@ -19,7 +19,7 @@ public class ConsoleControllerTest {
     }
 
     @Test
-    public void Should_DisplayBookList_WhenBIsPressed() {
+    public void should_DisplayBookList_WhenBIsPressed() {
         ConsoleController controller = new ConsoleController(THelper.initLibrary());
         View view = controller.action("B");
         assert (view instanceof BookListView);

@@ -10,7 +10,7 @@ import org.junit.Test;
  */
 public class MovieListViewTest {
     @Test
-    public void Output_ShouldDisplayListOfBooks() {
+    public void output_ShouldDisplayListOfBooks() {
 
         MovieListView view = new MovieListView(THelper.listOfMovies());
         String output = view.output();

@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 public class MovieTest {
 
     @Test
-    public void Should_InitializeMembers_AfterConstructorIsCalled() {
+    public void should_InitializeMembers_AfterConstructorIsCalled() {
         Movie movie = sampleMovie();
         assertTrue(movie.getTitle().equals("Star Wars"));
         assertTrue(movie.getDirector().equals("Steven Spielberg"));

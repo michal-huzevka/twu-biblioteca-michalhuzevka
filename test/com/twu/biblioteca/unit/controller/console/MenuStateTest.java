@@ -25,46 +25,46 @@ public class MenuStateTest {
     }
 
     @Test
-    public void Should_Terminate_When_QIsPressed() {
+    public void should_Terminate_When_QIsPressed() {
         menuState.action("q");
         assertTrue(menuState.isTerminated());
     }
 
     @Test
-    public void Should_ShowAvailableBooks_When_LIsPressedAndUserIsNotLibrarian() {
+    public void should_ShowAvailableBooks_When_LIsPressedAndUserIsNotLibrarian() {
         View view = menuState.action("b");
         assertTrue(view instanceof BookListView);
     }
 
     @Test
-    public void Should_ShowUnavailableBooks_When_LIsPressedAndUserIsLibrarian() {
+    public void should_ShowUnavailableBooks_When_LIsPressedAndUserIsLibrarian() {
         library.setActiveUserID(THelper.sampleLibrarian().getID());
         View view = menuState.action("b");
         assertTrue(view instanceof LibrarianBookListView);
     }
 
     @Test
-    public void Should_ShowAvailableMovies_When_MIsPressedAndUserIsNotLibrarian() {
+    public void should_ShowAvailableMovies_When_MIsPressedAndUserIsNotLibrarian() {
         View view = menuState.action("m");
         assertTrue(view instanceof MovieListView);
     }
 
     @Test
-    public void Should_ShowUnavailableMovies_When_MIsPressedAndUserIsLibrarian() {
+    public void should_ShowUnavailableMovies_When_MIsPressedAndUserIsLibrarian() {
         library.setActiveUserID(THelper.sampleLibrarian().getID());
         View view = menuState.action("m");
         assertTrue(view instanceof LibrarianMovieListView);
     }
 
     @Test
-    public void Should_ShowUserDetails_When_UIsPressedAsACustomer() {
+    public void should_ShowUserDetails_When_UIsPressedAsACustomer() {
         library.setActiveUserID(THelper.sampleUser().getID());
         View view = menuState.action("u");
         assertTrue(view instanceof UserDetailsView);
     }
 
     @Test
-    public void Should_NotShowUserDetails_When_UIsPressedAndUserIsNotACustomer() {
+    public void should_NotShowUserDetails_When_UIsPressedAndUserIsNotACustomer() {
         View view = menuState.action("u");
         assertFalse(view instanceof UserDetailsView);
     }

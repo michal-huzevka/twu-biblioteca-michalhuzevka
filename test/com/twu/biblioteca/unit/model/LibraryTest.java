@@ -12,7 +12,7 @@ import java.util.*;
 public class LibraryTest {
 
     @Test
-    public void Should_ListAvailableBooks_When_BooksAreAdded() {
+    public void should_ListAvailableBooks_When_BooksAreAdded() {
         List<Book> initialList = THelper.listOfBooks();
         Library library = new Library();
         library.addBooks(initialList);
@@ -29,7 +29,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void Should_ListAvailableMovies_When_MoviesAreAdded() {
+    public void should_ListAvailableMovies_When_MoviesAreAdded() {
         List<Movie> initialList = THelper.listOfMovies();
         Library library = new Library();
         library.addMovies(initialList);
@@ -47,7 +47,7 @@ public class LibraryTest {
 
 
     @Test
-    public void Should_RemoveBook_When_BookIsCheckedOut1() throws Exception {
+    public void should_RemoveBook_When_BookIsCheckedOut1() throws Exception {
         Library library = THelper.initLibrary();
         UserAccount user = THelper.sampleUser();
         LibraryItem libraryItem = library.getBookByTitle("The Agile Samurai");
@@ -59,7 +59,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void Should_RemoveBook_When_BookIsCheckedOut2() throws Exception {
+    public void should_RemoveBook_When_BookIsCheckedOut2() throws Exception {
         Library library = THelper.initLibrary();
         UserAccount user = THelper.sampleUser();
         Book libraryItem = library.getBookByTitle("The Agile Samurai");
@@ -70,7 +70,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void Should_RemoveMovie_When_MovieIsCheckedOut() throws Exception {
+    public void should_RemoveMovie_When_MovieIsCheckedOut() throws Exception {
         Library library = THelper.initLibrary();
         UserAccount user = THelper.sampleUser();
         Movie libraryItem = library.getMovieByTitle("Star Wars");
@@ -81,14 +81,14 @@ public class LibraryTest {
     }
 
     @Test
-    public void GetBookByTitle_Should_ReturnBook() {
+    public void getBookByTitle_Should_ReturnBook() {
         Library library = THelper.initLibrary();
         LibraryItem libraryItem = library.getBookByTitle("The Agile Samurai");
         assert (libraryItem.getTitle().equals("The Agile Samurai"));
     }
 
     @Test
-    public void GetBookByTitle_Should_ThrowException_When_NoBooksExist() {
+    public void getBookByTitle_Should_ThrowException_When_NoBooksExist() {
         Library library = THelper.initLibrary();
         try {
             LibraryItem libraryItem = library.getBookByTitle("Test book");
@@ -101,14 +101,14 @@ public class LibraryTest {
     }
 
     @Test
-    public void GetMovieByTitle_Should_ReturnMovie() {
+    public void getMovieByTitle_Should_ReturnMovie() {
         Library library = THelper.initLibrary();
         LibraryItem libraryItem = library.getMovieByTitle("The Shawshank Redemption");
         assert (libraryItem.getTitle().equals("The Shawshank Redemption"));
     }
 
     @Test
-    public void GetMovieByTitle_Should_ThrowException_When_NoBooksExist() {
+    public void getMovieByTitle_Should_ThrowException_When_NoBooksExist() {
         Library library = THelper.initLibrary();
         try {
             LibraryItem libraryItem = library.getMovieByTitle("Test movie");
@@ -121,25 +121,25 @@ public class LibraryTest {
     }
 
     @Test
-    public void BookExists_Should_ReturnTrue_IfItExists() {
+    public void bookExists_Should_ReturnTrue_IfItExists() {
         Library library = THelper.initLibrary();
         assertFalse(library.bookExists("Test book"));
     }
 
     @Test
-    public void BookExists_Should_ReturnFalse_IfItDoesntExist() {
+    public void bookExists_Should_ReturnFalse_IfItDoesntExist() {
         Library library = THelper.initLibrary();
         assertTrue(library.bookExists("The Agile Samurai"));
     }
 
     @Test
-    public void MovieExists_Should_ReturnTrue_IfItExists() {
+    public void movieExists_Should_ReturnTrue_IfItExists() {
         Library library = THelper.initLibrary();
         assertFalse(library.movieExists("Test movie"));
     }
 
     @Test
-    public void MovieExists_Should_ReturnFalse_IfItDoesntExist() {
+    public void movieExists_Should_ReturnFalse_IfItDoesntExist() {
         Library library = THelper.initLibrary();
         assertTrue(library.movieExists("The Shawshank Redemption"));
     }
