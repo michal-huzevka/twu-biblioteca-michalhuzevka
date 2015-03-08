@@ -3,15 +3,18 @@ package com.twu.biblioteca.integration;
 //import build.tools.javazic.Main;
 import com.twu.biblioteca.THelper;
 import com.twu.biblioteca.controller.console.*;
-import com.twu.biblioteca.model.LibraryItem;
-import com.twu.biblioteca.model.Library;
-import com.twu.biblioteca.model.UserAccount;
+import com.twu.biblioteca.model.*;
 import org.junit.Test;
 
 /**
  * Created by michal on 2/23/15.
  */
 public class CheckoutAndReturnTest {
+    private Library library;
+    private StubReader reader;
+    private StubWriter writer;
+    private ConsoleController controller;
+
     @Test
     public void checkOutAndReturn1() {
         Library library = THelper.initLibrary();
@@ -46,33 +49,39 @@ public class CheckoutAndReturnTest {
 
     @Test
     public void checkOutAndReturn2() {
-        Library library = THelper.initLibrary();
-        ConsoleController controller = new ConsoleController(library);
+        library = THelper.initLibrary();
+        reader = new StubReader();
+        writer = new StubWriter();
+        controller = new ConsoleController(library,reader, writer);
+
         LibraryItem libraryItem = library.getBookByTitle("Design Patterns");
         assert (libraryItem.isAvailable());
         assert (library.getAvailableBooks().size() == 3);
 
-        controller.action("l");
-        controller.action("1234");
-        controller.action("asd123");
-        controller.action("c");
-        controller.action("Design Patterns");
-        controller.action("Not a command");
+        fakeInput("l");
+        fakeInput("1234");
+        fakeInput("asd123");
+        fakeInput("c");
+        fakeInput("Design Patterns");
+        fakeInput("Not a command");
 
         assert (library.getAvailableBooks().size() == 2);
         assert (!libraryItem.isAvailable());
-        controller.action("c");
-        controller.action("r");
-        controller.action("r");
-        controller.action("Test book");
-        controller.action("Design Patterns");
+        fakeInput("c");
+        fakeInput("r");
+        fakeInput("r");
+        fakeInput("Test book");
+        fakeInput("Design Patterns");
         assert (library.getAvailableBooks().size() == 3);
         assert (libraryItem.isAvailable());
-        controller.action("r");
-        controller.action("Design Patterns");
+        fakeInput("r");
+        fakeInput("Design Patterns");
         assert (library.getAvailableBooks().size() == 3);
         assert (libraryItem.isAvailable());
+    }
 
-
+    public void fakeInput(String input) {
+        reader.addFakeInput(input);
+        controller.nextAction();
     }
 }

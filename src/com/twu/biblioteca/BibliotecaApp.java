@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.controller.console.ConsoleController;
 import com.twu.biblioteca.model.*;
+import com.twu.biblioteca.view.GenericView;
 import com.twu.biblioteca.view.MenuView;
 import com.twu.biblioteca.view.View;
 
@@ -32,26 +33,21 @@ public class BibliotecaApp {
     private static Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
-        System.out.println("Welcome to Biblioteca! Please feel free to view our books.");
+        IReader reader = new ConsoleReader();
+        IWriter writer = new ConsoleWriter();
         Library library = initDefaultLibrary();
-        ConsoleController controller = new ConsoleController(library);
+        ConsoleController controller = new ConsoleController(library, reader, writer);
+
+        View intro = new GenericView("Welcome to Biblioteca! Please feel free to view our books.");
         MenuView menu = new MenuView(library.getActiveUser());
-        displayView(menu);
+        writer.writeView(intro);
+        writer.writeView(menu);
 
         while (!controller.isTerminated()) {
-            String input = getUserInput();
-            View view = controller.action(input);
-            displayView(view);
+            controller.nextAction();
         }
     }
 
-    private static void displayView(View view) {
-        System.out.print(view.output());
-    }
-
-    private static String getUserInput() {
-        return in.nextLine();
-    }
 
     private static Library initDefaultLibrary() {
         List<Book> books = new LinkedList<Book>();

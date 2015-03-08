@@ -1,5 +1,7 @@
 package com.twu.biblioteca.controller.console;
 
+import com.twu.biblioteca.model.IReader;
+import com.twu.biblioteca.model.IWriter;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.view.View;
 
@@ -10,17 +12,23 @@ public class ConsoleController
 {
     private BaseState currentState;
     private Library library;
+    private IReader reader;
+    private IWriter writer;
 
-    public ConsoleController(Library library) {
+    public ConsoleController(Library library, IReader reader, IWriter writer) {
         this.library = library;
         currentState = new MenuState(library);
+        this.reader = reader;
+        this.writer = writer;
     }
 
-    public View action(String input) {
+    public void nextAction() {
+        String input = reader.readLine();
         View view = currentState.action(input);
         currentState = currentState.nextState();
-        return view;
+        writer.writeView(view);
     }
+
 
     public boolean isTerminated() {
         if (currentState instanceof MenuState) {
