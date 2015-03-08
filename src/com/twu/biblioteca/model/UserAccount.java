@@ -21,7 +21,7 @@ public class UserAccount {
         this.lastName = lastName;
         this.userType = userType;
         this.email = email;
-        this.phoneNumber = "44445555";
+        this.phoneNumber = phoneNumber;
     }
 
     public String getID() {
