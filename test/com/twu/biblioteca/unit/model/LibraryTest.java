@@ -12,18 +12,25 @@ import java.util.*;
 public class LibraryTest {
 
     @Test
-    public void should_ListAvailableBooks_When_BooksAreAdded() {
+    public void should_ListAllAvailableBooks() {
         List<Book> initialList = THelper.listOfBooks();
         Library library = new Library();
         library.addBooks(initialList);
 
         List<Book> availableLibraryItems = library.getAvailableBooks();
         assert(availableLibraryItems.containsAll(initialList));
+    }
+
+    @Test
+    public void should_ListAvailableBooks_When_BooksAreAdded() {
+        List<Book> initialList = THelper.listOfBooks();
+        Library library = new Library();
+        library.addBooks(initialList);
 
         Book book = new Book("Test", "Test Author", "2003");
         library.addBook(book);
 
-        availableLibraryItems = library.getAvailableBooks();
+        List<Book> availableLibraryItems = library.getAvailableBooks();
         assertTrue(availableLibraryItems.contains(book));
 
     }
@@ -107,17 +114,10 @@ public class LibraryTest {
         assert (libraryItem.getTitle().equals("The Shawshank Redemption"));
     }
 
-    @Test
+    @Test (expected = NoSuchElementException.class)
     public void getMovieByTitle_Should_ThrowException_When_NoBooksExist() {
         Library library = THelper.initLibrary();
-        try {
-            LibraryItem libraryItem = library.getMovieByTitle("Test movie");
-            Assert.fail("Exception not thrown");
-
-        }
-        catch (NoSuchElementException e) {
-
-        }
+        LibraryItem libraryItem = library.getMovieByTitle("Test movie");
     }
 
     @Test
