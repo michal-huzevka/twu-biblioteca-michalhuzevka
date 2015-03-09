@@ -5,6 +5,9 @@ import com.twu.biblioteca.view.BookListView;
 import com.twu.biblioteca.view.MovieListView;
 import org.junit.Test;
 
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * Created by michal on 2/23/15.
  */
@@ -14,8 +17,8 @@ public class MovieListViewTest {
 
         MovieListView view = new MovieListView(THelper.listOfMovies());
         String output = view.output();
-        assert(output.contains("Star Wars"));
-        assert(output.contains("The Shawshank Redemption"));
+        assertTrue(output.contains("Star Wars"));
+        assertTrue(output.contains("The Shawshank Redemption"));
 
     }
 }

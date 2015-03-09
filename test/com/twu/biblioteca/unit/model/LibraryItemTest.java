@@ -5,64 +5,56 @@ import com.twu.biblioteca.model.LibraryItem;
 import com.twu.biblioteca.model.UserAccount;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.NoSuchElementException;
+
 import static org.junit.Assert.*;
 /**
  * Created by michal on 2/23/15.
  */
 public class LibraryItemTest {
     @Test
-    public void should_UpdateStatus_WhenBookIsCheckedOut() throws Exception{
+    public void should_UpdateStatus_WhenItemIsCheckedOut() throws Exception{
         LibraryItem libraryItem = sampleLibraryItem();
         UserAccount user = THelper.sampleUser();
 
-        assertTrue(libraryItem.isAvailable());
-        assertTrue(libraryItem.getBorrower() == null);
         libraryItem.checkout(user);
-        assertTrue(!libraryItem.isAvailable());
         assertEquals(user, libraryItem.getBorrower());
-
-
     }
 
-    @Test
-    public void should_ThrowException_IfBookIsCheckedOutTwice() throws  Exception{
+    public void should_HaveCorrectBorrower_WhenItemIsCheckedOut() throws Exception{
         LibraryItem libraryItem = sampleLibraryItem();
         UserAccount user = THelper.sampleUser();
 
         libraryItem.checkout(user);
-        try {
-            libraryItem.checkout(user);
-            Assert.fail();
-        } catch (Exception ex) {
-
-        }
+        assertEquals(user, libraryItem.getBorrower());
     }
 
-    @Test
-    public void should_UpdateStatus_WhenBookIsReturned() throws Exception{
+    @Test  (expected = Exception.class)
+    public void should_ThrowException_IfItemIsCheckedOutTwice() throws  Exception{
         LibraryItem libraryItem = sampleLibraryItem();
         UserAccount user = THelper.sampleUser();
 
-        assert(libraryItem.isAvailable());
-
         libraryItem.checkout(user);
-        assert(!libraryItem.isAvailable());
+        libraryItem.checkout(user);
+    }
+
+    @Test
+    public void should_UpdateStatus_WhenItemIsReturned() throws Exception{
+        LibraryItem libraryItem = sampleLibraryItem();
+        UserAccount user = THelper.sampleUser();
+        libraryItem.checkout(user);
 
         libraryItem.returnItem();
-        assert (libraryItem.isAvailable());
+        assertTrue (libraryItem.isAvailable());
 
     }
 
-    @Test
-    public void should_ThrowException_IfBookIsIncorrectlyReturned() throws  Exception{
+    @Test (expected = Exception.class)
+    public void should_ThrowException_IfItemIsIncorrectlyReturned() throws  Exception{
         LibraryItem libraryItem = sampleLibraryItem();
         UserAccount user = THelper.sampleUser();
-        try {
-            libraryItem.returnItem();
-            Assert.fail();
-        } catch (Exception ex) {
-
-        }
+        libraryItem.returnItem();
     }
 
 

@@ -18,7 +18,7 @@ public class LibraryTest {
         library.addBooks(initialList);
 
         List<Book> availableLibraryItems = library.getAvailableBooks();
-        assert(availableLibraryItems.containsAll(initialList));
+        assertTrue(availableLibraryItems.containsAll(initialList));
     }
 
     @Test
