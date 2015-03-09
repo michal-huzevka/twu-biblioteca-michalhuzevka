@@ -12,7 +12,7 @@ import java.util.*;
 public class LibraryTest {
 
     @Test
-    public void should_ListAllAvailableBooks() {
+    public void should_ListAllAvailableBooks_When_BooksAreAdded() {
         List<Book> initialList = THelper.listOfBooks();
         Library library = new Library();
         library.addBooks(initialList);
@@ -22,10 +22,18 @@ public class LibraryTest {
     }
 
     @Test
-    public void should_ListAvailableBooks_When_BooksAreAdded() {
-        List<Book> initialList = THelper.listOfBooks();
+    public void should_ListAllAvailableMovies_When_MoviesAreAdded() {
+        List<Movie> initialList = THelper.listOfMovies();
         Library library = new Library();
-        library.addBooks(initialList);
+        library.addMovies(initialList);
+
+        List<Movie> availableMovies = library.getAvailableMovies();
+        assertTrue(availableMovies.containsAll(initialList));
+    }
+
+    @Test
+    public void should_ListAvailableBooks_When_ABookIsAdded() {
+        Library library = new Library();
 
         Book book = new Book("Test", "Test Author", "2003");
         library.addBook(book);
@@ -36,17 +44,12 @@ public class LibraryTest {
     }
 
     @Test
-    public void should_ListAvailableMovies_When_MoviesAreAdded() {
-        List<Movie> initialList = THelper.listOfMovies();
+    public void should_ListAvailableMovies_When_AMovieIsAdded() {
         Library library = new Library();
-        library.addMovies(initialList);
-
-        List<Movie> availableMovies = library.getAvailableMovies();
-        assertTrue(availableMovies.containsAll(initialList));
 
         Movie movie = new Movie("TestMovie", "Test", "2003", "10");
         library.addMovie(movie);
-        availableMovies = library.getAvailableMovies();
+        List<Movie> availableMovies = library.getAvailableMovies();
         assertTrue(availableMovies.contains(movie));
     }
 
@@ -61,7 +64,7 @@ public class LibraryTest {
         library.checkoutItem(libraryItem, user.getID());
         List<Book> availableLibraryItems = library.getAvailableBooks();
         for (LibraryItem tmpLibraryItem : availableLibraryItems) {
-            assert(tmpLibraryItem != libraryItem);
+            assertFalse(tmpLibraryItem == libraryItem);
         }
     }
 
@@ -73,7 +76,7 @@ public class LibraryTest {
         library.checkoutItem(libraryItem, user.getID());
         List<Book> list = library.getUnavailableBooks();
         Book book = list.get(0);
-        assert(book == libraryItem);
+        assertTrue(book == libraryItem);
     }
 
     @Test
@@ -84,34 +87,27 @@ public class LibraryTest {
         library.checkoutItem(libraryItem, user.getID());
         List<Movie> list = library.getUnavailableMovies();
         Movie movie = list.get(0);
-        assert(movie == libraryItem);
+        assertTrue(movie == libraryItem);
     }
 
     @Test
-    public void getBookByTitle_Should_ReturnBook() {
+    public void getBookByTitle_Should_ReturnCorrectBook() {
         Library library = THelper.initLibrary();
         LibraryItem libraryItem = library.getBookByTitle("The Agile Samurai");
-        assert (libraryItem.getTitle().equals("The Agile Samurai"));
+        assertTrue(libraryItem.getTitle().equals("The Agile Samurai"));
     }
 
-    @Test
+    @Test (expected = NoSuchElementException.class)
     public void getBookByTitle_Should_ThrowException_When_NoBooksExist() {
         Library library = THelper.initLibrary();
-        try {
-            LibraryItem libraryItem = library.getBookByTitle("Test book");
-            Assert.fail("Exception not thrown");
-
-        }
-        catch (NoSuchElementException e) {
-
-        }
+        LibraryItem libraryItem = library.getBookByTitle("Test book");
     }
 
     @Test
     public void getMovieByTitle_Should_ReturnMovie() {
         Library library = THelper.initLibrary();
         LibraryItem libraryItem = library.getMovieByTitle("The Shawshank Redemption");
-        assert (libraryItem.getTitle().equals("The Shawshank Redemption"));
+        assertTrue (libraryItem.getTitle().equals("The Shawshank Redemption"));
     }
 
     @Test (expected = NoSuchElementException.class)
